@@ -14,7 +14,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="<?php echo base_url(); ?>html/bootstrap/css/bootstrap-theme.min.css">
         <!-- Latest compiled and minified JavaScript -->
         <script src="<?php echo base_url(); ?>html/bootstrap/js/bootstrap.min.js"></script>
-        <title>AmusementBox管理画面</title>
+        <title>Square管理画面</title>
     </head>
     <body>
         <nav class="navbar navbar-default navbar-inverse" role="navigation">
@@ -34,7 +34,7 @@ and open the template in the editor.
               
                     -->
                     <!-- タイトルなどのテキスト -->
-                    <a class="navbar-brand" href="<?php echo base_url() ?>">AmusementBox</a>
+                    <a class="navbar-brand" href="<?php echo base_url() ?>">Square</a>
 
                 </div>
 
@@ -48,16 +48,15 @@ and open the template in the editor.
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">ユーザ<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo base_url() ?>/index.php/user">ユーザ一覧</a></li>
+                                <li><a href="<?php echo base_url() ?>index.php/user">一覧</a></li>
                             </ul>
                         </li>
                         <!-- ドロップダウンのメニューも配置可能 -->
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">端末<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">BOX<b class="caret"></b></a>
                             <ul class="dropdown-menu">
+                                <li><a href="">一覧</a></li>
                                 <li><a href="">登録</a></li>
-                                <li><a href="">編集</a></li>
-                                <li><a href="">MAP</a></li>
                                 <!--<li class="divider"></li>!-->
                             </ul>
                         </li>
