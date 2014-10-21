@@ -1,8 +1,8 @@
 <?php $this->load->view('common/header'); ?>
-<div class="container">
+<div class="container-fluid">
     <h2>ユーザ一覧</h2>
     <?php
-    $attributes = array('role' => 'form');
+    $attributes = array('class' => 'form-inline form-search', 'role' => 'form');
     echo form_open('user/search', $attributes);
     ?>
     <div class="panel panel-info">
@@ -10,15 +10,16 @@
             <div class="panel-title">検索</div>
         </div>
         <div class="panel-body">
-            <lable>年齢&nbsp;</label><input name="age_over" type="text" placeholder="年齢(以上)" />&nbsp;～&nbsp;<input name="age_under" type="text" placeholder="年齢(以下)" />
-            <lable>性別&nbsp;</label><input name="age_over" type="text" placeholder="年齢(以上)" />
-            <lable>登録日&nbsp;</label><input name="age_over" type="text" placeholder="年齢(以上)" />&nbsp;～&nbsp;<input name="age_under" type="text" placeholder="年齢(以下)" />
-            <lable>利用回数&nbsp;</label><input name="age_over" type="text" placeholder="年齢(以上)" />
+            <label class="checkbox"><input type="checkbox" name="gender" value="1" /> 男</label><label class="checkbox"><input type="checkbox" name="gender" value="0" /> 女</label><br />
+            <lable>年齢&nbsp;</label><input name="age_over" type="text" placeholder="年齢(以上)" />&nbsp;～&nbsp;<input name="age_under" type="text" placeholder="年齢(以下)" /><br />
+            <lable>登録日&nbsp;</label><input name="age_over" type="text" placeholder="(以上)" />&nbsp;～&nbsp;<input name="age_under" type="text" placeholder="年齢(以下)" /><br />
+            <lable>利用回数&nbsp;</label><input name="age_over" type="text" placeholder="利用回数" /><br />
         </div>
+        <button type="submit" class="form-search"><i class="icon-search"></i>検索</button>
     </div>
 </form>
 <table class="table">
-    <tr>
+    <tr class="success">
         <th>ニックネーム</th>
         <th>年齢</th>
         <th>性別</th>
