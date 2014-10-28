@@ -39,7 +39,17 @@
                 </tr>
             </table>
         </div>
-        <div class="text-center" style="margin-bottom:10px;"><button type="submit" class="btn btn-info btn-lg"><i class="glyphicon glyphicon-search"></i>検索</button></div>
+        <div class="text-center" style="margin-bottom:10px;"><button type="button" class="btn btn-info btn-lg"><i class="glyphicon glyphicon-search" onclick="search_user"></i>検索</button></div>
+        <script type="text/javascript">
+            $function({
+            function search_user() {
+                var gender = $('input[name="gender"]').val();
+                var age_over = $('input[name="age_over"]').val();
+                var age_over = $('input[name="age_under"]').val();
+                window.location.href =
+                }
+            });
+        </script>
     </div>
 </form>
 <table class="table table-hover">
