@@ -55,7 +55,7 @@ and open the template in the editor.
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">BOX<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="">一覧</a></li>
+                                <li><a href="<?php echo base_url() ?>index.php/box">一覧</a></li>
                                 <li><a href="">登録</a></li>
                                 <!--<li class="divider"></li>!-->
                             </ul>
