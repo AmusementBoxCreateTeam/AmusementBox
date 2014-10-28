@@ -8,12 +8,18 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <script src="<?php echo base_url(); ?>html/js/jquery-2.1.1.min.js"></script>
+        <!-- bootstrap -->
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>html/bootstrap/css/bootstrap.min.css">
         <!-- Optional theme -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>html/bootstrap/css/bootstrap-theme.min.css">
         <!-- Latest compiled and minified JavaScript -->
         <script src="<?php echo base_url(); ?>html/bootstrap/js/bootstrap.min.js"></script>
+        <!-- dispicker -->
+        <link rel="stylesheet" href="<?php echo base_url(); ?>html/css/bootstrap-theme.min.css">
+        <script src="<?php echo base_url(); ?>html/js/bootstrap-datepicker.js"></script>
+        <script src="<?php echo base_url(); ?>html/js/bootstrap-datepicker.ja.js"></script>
+        <script src="<?php echo base_url(); ?>html/js/base.js"></script>
         <title>Square管理画面</title>
     </head>
     <body>
