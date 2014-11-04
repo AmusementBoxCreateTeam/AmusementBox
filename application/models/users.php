@@ -8,9 +8,17 @@ class Users extends CI_Model {
     public function __construct() {
         parent::__construct();
         $this->load->database();
+        $this->load->library('conversion_age_birthday');
     }
 
-    function get_list($offset='') {
+    /**
+     * ユーザ一覧を取得
+     * @param type $search
+     * @param type $offset
+     * @return type
+     */
+    function get_list($search = '', $offset = '') {
+
         $this->db->select('users.id');
         $this->db->select('users.nickname');
         $this->db->select('users.birthday');
@@ -18,16 +26,24 @@ class Users extends CI_Model {
         $this->db->select('users.gender');
         $this->db->from('users');
         $this->db->join('historys', 'users.id = historys.user_id', 'left');
+        //検索条件の生成
+        $where = $this->create_where($search);
+        $this->db->where($where);
         $this->db->where('delete_date', null);
         $this->db->order_by('users.entry_date', 'desc');
         $this->db->order_by('users.id', 'desc');
-        $this->db->limit(100,$offset);
+        $this->config->load('user');
+        $this->db->limit($this->config->item('disp_num'), $offset);
         $query = $this->db->get();
 
         return $query->result();
     }
 
-    function get_count_list() {
+    /**
+     * ユーザ一覧の件数を取得
+     * @return type
+     */
+    function get_count_row($search) {
         $this->db->select('users.id');
         $this->db->select('users.nickname');
         $this->db->select('users.birthday');
@@ -35,9 +51,13 @@ class Users extends CI_Model {
         $this->db->select('users.gender');
         $this->db->from('users');
         $this->db->join('historys', 'users.id = historys.user_id', 'left');
+        //検索条件の生成
+        $where = $this->create_where($search);
+        $this->db->where($where);
         $this->db->where('delete_date', null);
         $this->db->order_by('users.entry_date', 'desc');
         $this->db->order_by('users.id', 'desc');
+        $this->config->load('user');
 
         $query = $this->db->get();
 
@@ -57,6 +77,30 @@ class Users extends CI_Model {
         } else {
             return 0;
         }
+    }
+
+    function create_where($search = '') {
+        $CI =& get_instance();
+        $where = array();
+        if (!empty($search['gender']) && empty($search['gender'][1])) {
+            $where += array('gender' => $search['gender'][0]);
+        }
+        if (!empty($search['age_over'])) {
+            $date = $this->conversion_age_birthday->conversion_date($search['age_over']);
+            $where += array('birthday <=' => $date);
+        }
+        if (!empty($search['age_under'])) {
+            $date = $this->conversion_age_birthday->conversion_date($search['age_under']);
+            $where += array('birthday >=' => $date);
+        }
+        if (!empty($search['entry_date_over'])) {
+            $where += array('entry_date >=' => $search['entry_date_over']);
+        }
+        if (!empty($search['entry_date_under'])) {
+            $where += array('entry_date <=' => $search['entry_date_under']);
+        }
+
+        return $where;
     }
 
 }
