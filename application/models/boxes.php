@@ -29,10 +29,10 @@ class Boxes extends CI_Model {
         if (!empty($search['pref'])) {
             $where += array('prefectures =' => $search['pref']);
         }
-        if (!empty($search['entry_date_over']) {
+        if (!empty($search['entry_date_over'])) {
             $where += array('entry_date >=' => $search['entry_date_over']);
         }
-        if (!empty($search['entry_date_under']) {
+        if (!empty($search['entry_date_under'])) {
             $where += array('entry_date <=' => $search['entry_date_under']);
         }
 

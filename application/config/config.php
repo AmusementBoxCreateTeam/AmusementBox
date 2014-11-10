@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://amusement-box.vv.si/AmusementBox/';
+$config['base_url']	= 'http://square.php.xdomain.jp/square/';
 
 /*
 |--------------------------------------------------------------------------
