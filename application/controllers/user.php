@@ -62,8 +62,8 @@ class User extends CI_Controller {
         }
         $data['paging'] = '';
         $data['paging'] = $this->pagination($url, $data['count_row']);
-        $data['start_row'] = ($data['count_row'] === 0) ? 0 : $data['per_page']  + 1;
-        $data['end_row'] = ($data['count_row'] === 0 || $data['count_row'] <= $this->config->item('disp_num')) ? 0 : $data['per_page']  + $this->config->item('disp_num');
+        $data['start_row'] = ($data['count_row'] === 0) ? 0 : $data['per_page'] + 1;
+        $data['end_row'] = ($data['count_row'] === 0 || $data['count_row'] <= $this->config->item('disp_num')) ? 0 : $data['per_page'] + $this->config->item('disp_num');
         $this->load->view('user/index', $data);
     }
 
@@ -73,6 +73,15 @@ class User extends CI_Controller {
             show_404();
             exit();
         }
+        $data['user'] = $this->users->get_user_detail($user_id);
+        //性別の変換
+        if ($data['user'][0]->gender == 0) {
+            $data['user'][0]->gender = '女';
+        } else if ($data['user'][0]->gender == 1) {
+            $data['user'][0]->gender = '男';
+        }
+        $data['history'] = $this->users->get_history_detail($user_id);
+        $this->load->view('user/detail', $data);
     }
 
     /**
