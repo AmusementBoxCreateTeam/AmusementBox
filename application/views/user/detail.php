@@ -29,5 +29,23 @@
             ?>
         </table>
     </div>
+    <table class="table table-hover">
+        <tr class="success">
+            <th class="col-xs-4 col-sm-4 col-md-4">端末ID</th>
+            <th class="col-xs-4 col-sm-4 col-md-4">曲ID<th>
+            <th class="col-xs-4 col-sm-4 col-md-4">利用日</th>
+        </tr>
+        <?php if (!empty($list)) { ?>
+            <?php foreach ($list as $val) { ?>
+                <tr>
+                    <td><?php echo $val->box_id ?></td>
+                    <td><?php echo $val->song_id ?></td>
+                    <td><?php echo $val->use_datetime ?></td>
+                </tr>
+                <?php
+            }
+        }
+        ?>
+    </table>
 </div>
 <?php echo $this->load->view('common/footer') ?>

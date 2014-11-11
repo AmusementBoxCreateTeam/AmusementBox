@@ -69,9 +69,7 @@ and open the template in the editor.
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">統計<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="">リアルタイム</a></li>
-                                <li><a href="">ランキング</a></li>
-                                <li><a href="">売上</a></li>
+                                <li><a href="<?php echo base_url() ?>index.php/statistic">ランキング</a></li>
                                 <!--<li class="divider"></li>!-->
                             </ul>
                         </li>

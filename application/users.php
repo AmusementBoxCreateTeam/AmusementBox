@@ -80,6 +80,7 @@ class Users extends CI_Model {
     }
 
     function create_where($search = '') {
+        $CI = & get_instance();
         $where = array();
         if (!empty($search['gender']) && empty($search['gender'][1])) {
             $where += array('gender' => $search['gender'][0]);
