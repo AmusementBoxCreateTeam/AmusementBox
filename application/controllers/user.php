@@ -89,7 +89,7 @@ class User extends CI_Controller {
      * @param type $url
      * @param type $total_rows
      */
-    public function pagination($url = '', $total_rows = '') {
+    private function pagination($url = '', $total_rows = '') {
 
         $config['first_link'] = '最初';
         $config['last_link'] = '最後';

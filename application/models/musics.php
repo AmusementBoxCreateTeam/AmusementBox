@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Users extends CI_Model {
+class Musics extends CI_Model {
 
     public function __construct() {
         parent::__construct();
@@ -12,26 +12,25 @@ class Users extends CI_Model {
     }
 
     /**
-     * ユーザ一覧を取得
+     * 音楽一覧を取得
      * @param type $search
      * @param type $offset
      * @return type
      */
     function get_list($search = '', $offset = '') {
 
-        $this->db->select('users.id');
-        $this->db->select('users.nickname');
-        $this->db->select('users.birthday');
-        $this->db->select('users.entry_date');
-        $this->db->select('users.gender');
-        $this->db->select('users.delete_date');
-        $this->db->from('users');
-        $this->db->join('historys', 'users.id = historys.user_id', 'left');
+        $this->db->select('songs.id');
+        $this->db->select('songs.song_title');
+        $this->db->select('songs.lyricist');
+        $this->db->select('songs.composer');
+        $this->db->select('songs.singer');
+        $this->db->select('songs.song_time');
+        $this->db->select('songs.genre');
+        $this->db->select('songs.release_date');
+        $this->db->from('songs');
         //検索条件の生成
         $where = $this->create_where($search);
         $this->db->where($where);
-        $this->db->order_by('users.entry_date', 'desc');
-        $this->db->order_by('users.id', 'desc');
         $this->config->load('user');
         $this->db->limit($this->config->item('disp_num'), $offset);
         $query = $this->db->get();
@@ -40,24 +39,22 @@ class Users extends CI_Model {
     }
 
     /**
-     * ユーザ一覧の件数を取得
+     * 音楽一覧の件数を取得
      * @return type
      */
     function get_count_row($search) {
-        $this->db->select('users.id');
-        $this->db->select('users.nickname');
-        $this->db->select('users.birthday');
-        $this->db->select('users.entry_date');
-        $this->db->select('users.gender');
-        $this->db->select('users.delete_date');
-        $this->db->from('users');
-        $this->db->join('historys', 'users.id = historys.user_id', 'left');
+        $this->db->select('songs.id');
+        $this->db->select('songs.song_title');
+        $this->db->select('songs.lyricist');
+        $this->db->select('songs.composer');
+        $this->db->select('songs.singer');
+        $this->db->select('songs.song_time');
+        $this->db->select('songs.genre');
+        $this->db->select('songs.release_date');
+        $this->db->from('songs');
         //検索条件の生成
         $where = $this->create_where($search);
         $this->db->where($where);
-        $this->db->order_by('users.entry_date', 'desc');
-        $this->db->order_by('users.id', 'desc');
-        $this->config->load('user');
 
         $query = $this->db->get();
 
@@ -102,11 +99,6 @@ class Users extends CI_Model {
         return $where;
     }
 
-    /**
-     * ユーザ詳細
-     * @param type $user_id
-     * @return type
-     */
     function get_user_detail($user_id) {
         $this->db->select('users.id');
         $this->db->select('users.entry_date');
@@ -126,11 +118,6 @@ class Users extends CI_Model {
         return $query->result();
     }
 
-    /**
-     * ユーザ詳細の利用履歴一覧
-     * @param type $user_id
-     * @return type
-     */
     function get_history_detail($user_id) {
         $this->db->distinct();
         $this->db->select('historys.use_datetime');
@@ -141,7 +128,7 @@ class Users extends CI_Model {
         $this->db->select('songs.composer');
         $this->db->select('songs.singer');
         $this->db->from('historys');
-        $this->db->where('users.id', $user_id);
+        $this->db->where('songs.id', $user_id);
         $this->db->join('songs', 'historys.song_id = songs.id', 'left');
         $this->db->join('boxes', 'historys.box_id = boxes.id', 'left');
         $this->db->join('users', 'historys.user_id = users.id', 'left');

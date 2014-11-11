@@ -12,7 +12,8 @@ class Statistic extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('statistic/index.php');
+        $data['list'] = $this->statistics->get_rank();
+        $this->load->view('statistic/index.php',$data);
     }
 
     public function rank5() {
@@ -24,7 +25,7 @@ class Statistic extends CI_Controller {
         if (!$this->form_validation->run()) {
             $data['not_found'] = 'お探しの情報は見つかりませんでした';
         } else {
-            $data['list'] = $this->statistics->get_rank5($this->input->post());
+            $data['list'] = $this->statistics->get_rank($this->input->post());
         }
         $this->load->view('statistic/index.php',$data);
     }

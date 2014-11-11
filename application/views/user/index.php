@@ -13,7 +13,10 @@
         <div class="panel-body">
             <table class="table table-bordered">
                 <tr>
-                    <th>性別</th><td><label class="checkbox-inline"><input type="checkbox" name="gender[]" value="1" /> 男</label><label class="checkbox-inline"><input type="checkbox" name="gender[]" value="0" /> 女</label></td>
+                    <th>性別</th><td>
+                        <label class="checkbox-inline"><input type="checkbox" name="gender[]" value="1" <?php echo!empty($search['gender']) && ($search['gender'][0] == 1 || count($search['gender']) === 2) ? 'checked' : ''; ?> /> 男性</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="gender[]" value="0" <?php echo!empty($search['gender']) && ($search['gender'][0] == 0 || count($search['gender']) === 2) ? 'checked' : ''; ?>/>女性</label>
+                    </td>
                 </tr>
                 <tr>
                     <th>年齢</th>
@@ -45,26 +48,28 @@
 </form>
 <h4><?php echo $count_row . '件中&nbsp;' . $start_row . '～' . $end_row . '表示' ?></h4>
 <table class="table table-hover">
-    <tr class="success">
-        <th class="col-xs-3 col-sm-3 col-md-3">ニックネーム</th>
-        <th class="col-xs-2 col-sm-2 col-md-2">年齢</th>
-        <th class="col-xs-2 col-sm-2 col-md-2">性別</th>
-        <th class="col-xs-2 col-sm-2 col-md-2">登録日</th>
-        <th class="col-xs-1 col-sm-1 col-md-1">削除日</th>
-    </tr>
-    <?php if (!empty($list)) { ?>
-        <?php foreach ($list as $val) { ?>
-            <tr>
-                <td><a href="<?php echo base_url() . 'index.php/user/detail/' . $val->id ?>"><?php echo $val->nickname ?></a></td>
-                <td><?php echo $val->age ?></td>
-                <td><?php echo $val->gender ?></td>
-                <td><?php echo $val->entry_date ?></td>
-                <td class="delete_date"><?php echo $val->delete_date ?></td>
-            </tr>
-            <?php
+    <tbody>
+        <tr class="success">
+            <th class="col-xs-3 col-sm-3 col-md-3">ニックネーム</th>
+            <th class="col-xs-2 col-sm-2 col-md-2">年齢</th>
+            <th class="col-xs-2 col-sm-2 col-md-2">性別</th>
+            <th class="col-xs-2 col-sm-2 col-md-2">登録日</th>
+            <th class="col-xs-1 col-sm-1 col-md-1">削除日</th>
+        </tr>
+        <?php if (!empty($list)) { ?>
+            <?php foreach ($list as $val) { ?>
+                <tr>
+                    <td><a href="<?php echo base_url() . 'index.php/user/detail/' . $val->id ?>"><?php echo $val->nickname ?></a></td>
+                    <td><?php echo $val->age ?></td>
+                    <td><?php echo $val->gender ?></td>
+                    <td><?php echo $val->entry_date ?></td>
+                    <td class="delete_date"><?php echo $val->delete_date ?></td>
+                </tr>
+                <?php
+            }
         }
-    }
-    ?>
+        ?>
+    </tbody>
 </table>
 <h4><?php echo $count_row . '件中&nbsp;' . $start_row . '～' . $end_row . '表示' ?></h4>
 <?php echo!empty($paging) ? $paging : '' ?>

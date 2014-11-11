@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="panel panel-info">
         <div class="panel-heading">
-            <div class="panel-title">ランキングTOP5</div>
+            <div class="panel-title">音楽ランキングTOP5</div>
         </div>
         <div class="panel-body">
             <select name="gender">
@@ -24,11 +24,40 @@
                 <option value="90" <?php echo set_select('age', '90'); ?>>90代</option>
             </select>
             </form>
-        </div>
-        <div class="text-center" style="margin-bottom:10px;"><button type="submit" class="btn btn-info btn-lg"><i class="glyphicon glyphicon-search"></i>検索</button></div>
-        <div>
-            <?php if (!empty($list)) { ?>
-            <?php } ?>
+            <div class="text-left" style="margin:10px;"><button type="submit" class="btn btn-info"><i class="glyphicon glyphicon-search"></i>検索</button></div>
+            <table class="table table-bordered">
+                <?php if (!empty($list)) { ?>
+                    <tr class="danger">
+                        <th class="col-xs-1 col-sm-1 col-md-1">順位</th>
+                        <th class="col-xs-2 col-sm-2 col-md-2">曲名</th>
+                        <th class="col-xs-2 col-sm-2 col-md-2">作詞</th>
+                        <th class="col-xs-2 col-sm-2 col-md-2">作曲</th>
+                        <th class="col-xs-2 col-sm-2 col-md-2">歌手</th>
+                        <th class="col-xs-1 col-sm-1 col-md-1">ジャンル</th>
+                        <th class="col-xs-1 col-sm-1 col-md-1">利用者数</th>
+                        <th class="col-xs-1 col-sm-1 col-md-1">詳細</th>
+                    </tr>
+                    <?php
+                    $i = 1;
+                    foreach ($list as $val) {
+                        ?>
+                        <tr>
+                            <td><?php echo $i ?></td>
+                            <td><?php echo $val->song_title ?></td>
+                            <td><?php echo $val->lyricist ?></td>
+                            <td><?php echo $val->composer ?></td>
+                            <td><?php echo $val->singer ?></td>
+                            <td><?php echo $val->genre ?>   </td>
+                            <td><?php echo $val->used_num ?>   </td>
+                            <td><a href="<?php base_url().'index.php/music/detail' ?>">詳細</a></td>
+                        </tr>
+                        <?php
+                        $i++;
+                    }
+                    ?>
+                <?php } ?>
+            </table>
+            <a href="#">全ランキングを表示する</a>
         </div>
     </div>
 </div>

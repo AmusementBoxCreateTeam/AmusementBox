@@ -11,15 +11,20 @@ class Statistics extends CI_Model {
         $this->load->library('conversion_age_birthday');
     }
 
-    public function get_rank5($search) {
+    public function get_rank($search = '') {
+        $this->db->select('songs.id as song_id');
         $this->db->select('songs.song_title');
         $this->db->select('songs.lyricist');
         $this->db->select('songs.composer');
         $this->db->select('songs.singer');
         $this->db->select('songs.genre');
+        $this->db->select('count(songs.id) as used_num');
         $this->db->from('historys');
         $this->db->join('users', 'historys.user_id = users.id', 'left');
         $this->db->join('songs', 'historys.song_id = songs.id', 'left');
+        $this->db->group_by('songs.id');
+        $this->db->order_by('used_num','desc');
+        $this->db->limit('5');
         $where = $this->rank5_where($search);
         $this->db->where($where);
 

@@ -67,8 +67,10 @@ and open the template in the editor.
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">統計<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">音楽<b class="caret"></b></a>
                             <ul class="dropdown-menu">
+                                <li><a href="<?php echo base_url() ?>index.php/music">一覧</a></li>
+                                <li><a href="<?php echo base_url() ?>index.php/music/register">登録</a></li>
                                 <li><a href="<?php echo base_url() ?>index.php/statistic">ランキング</a></li>
                                 <!--<li class="divider"></li>!-->
                             </ul>
