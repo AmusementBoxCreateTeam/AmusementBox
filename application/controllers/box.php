@@ -12,6 +12,9 @@ class Box extends CI_Controller {
         $this->load->model(array('boxes'));
     }
 
+    /**
+     * 端末ページトップ
+     */
     public function index() {
         if (empty($_GET)) {
             $data['pref_selected'] = "";
@@ -22,11 +25,27 @@ class Box extends CI_Controller {
             $data['entry_date_over'] = $this->input->get('entry_date_over', true);
             $data['entry_date_under'] = $this->input->get('entry_date_under', true);
         }
-        $data['list'] = $this->boxes->get_list();
+        $search = array('pref' => $data['pref_selected'],
+            'entry_date_over' => $data['entry_date_over'],
+            'entry_date_under' => $data['entry_date_under']);
+        $data['list'] = $this->boxes->get_list($search);
         $data['prefs'] = $this->get_pref_list();
         $this->load->view('box/index.php', $data);
     }
 
+
+    /**
+     * 端末登録ページ
+     */
+    public function register() {
+        $this->load->view('box/index.php', $data);
+
+    }
+
+
+    /**
+     * 都道府県リストを返す
+     */
     private function get_pref_list() {
         return array ('指定しない',
             '北海道',
@@ -39,6 +58,10 @@ class Box extends CI_Controller {
             '福岡県','佐賀県','長崎県','熊本県','大分県','宮崎県','鹿児島県','沖縄県');
     }
 
+
+    /**
+     * ページング用リンクを返す
+     */
     private function pagination($url, $total_rows) {
 
         $config['base_url'] = $url;
@@ -55,9 +78,6 @@ class Box extends CI_Controller {
         return $this->pagination->create_links();
     }
 
-    public function register() {
-
-    }
 
     private function set_validation_rules() {
         $config = array();
