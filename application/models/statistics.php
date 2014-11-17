@@ -33,22 +33,14 @@ class Statistics extends CI_Model {
         return $query->result();
     }
 
-    function rank_detail($id) {
-        $this->db->select('songs.id as song_id');
-        $this->db->select('songs.song_title');
-        $this->db->select('songs.lyricist');
-        $this->db->select('songs.composer');
-        $this->db->select('songs.singer');
-        $this->db->select('songs.genre');
+    function rank_gender_rate($id,$gender) {
         $this->db->select('count(songs.id) as used_num');
         $this->db->from('historys');
         $this->db->join('users', 'historys.user_id = users.id', 'left');
         $this->db->join('songs', 'historys.song_id = songs.id', 'left');
         $this->db->group_by('songs.id');
-        $this->db->order_by('used_num', 'desc');
-        $this->db->order_by('song_title', 'asc');
-        $this->db->limit('100');
-        $this->db->where('songs.id',$id);
+        $this->db->where('users.gender', $gender);
+        $this->db->where('songs.id', $id);
 
         $query = $this->db->get();
         return $query->result();
@@ -65,6 +57,22 @@ class Statistics extends CI_Model {
             $age_under = $this->conversion_age_birthday->conversion_date($search['age'] + 9);
             $where += array('users.birthday <=' => $age_over);
             $where += array('users.birthday >=' => $age_under);
+        }
+        if (!empty($search['daily'])) {
+            $time = date("Y-m-d", strtotime("-1 day"));
+            $where += array('historys.use_datetime >=' => $time);
+        }
+        if (!empty($search['weekly'])) {
+            $time = date("Y-m-d", strtotime("-1 week"));
+            $where += array('historys.use_datetime >=' => $time);
+        }
+        if (!empty($search['monthly'])) {
+            $time = date("Y-m-d", strtotime("-1 month"));
+            $where += array('historys.use_datetime >=' => $time);
+        }
+        if (!empty($search['yearly'])) {
+            $time = date("Y-m-d", strtotime("-1 year"));
+            $where += array('historys.use_datetime >=' => $time);
         }
         return $where;
     }

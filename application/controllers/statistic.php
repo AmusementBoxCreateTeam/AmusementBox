@@ -35,7 +35,10 @@ class Statistic extends CI_Controller {
             show_404();
             exit();
         }
-        $data['list'] = $this->statistics->rank_detail;
+        //女性
+        $data['woman'] = $this->statistics->rank_gender_rate($id,0);
+        //男性
+        $data['man'] = $this->statistics->rank_gender_rate($id,1);
         $this->load->view('statistic/detail', $data);
     }
 
