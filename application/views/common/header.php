@@ -13,10 +13,10 @@ and open the template in the editor.
         <link rel="stylesheet" href="<?php echo base_url(); ?>html/bootstrap/css/bootstrap.min.css">
         <!-- Optional theme -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>html/bootstrap/css/bootstrap-theme.min.css">
+         <link rel="stylesheet" href="<?php echo base_url(); ?>html/css/base.css">
         <!-- Latest compiled and minified JavaScript -->
         <script src="<?php echo base_url(); ?>html/bootstrap/js/bootstrap.min.js"></script>
         <!-- dispicker -->
-        <link rel="stylesheet" href="<?php echo base_url(); ?>html/css/bootstrap-theme.min.css">
         <script src="<?php echo base_url(); ?>html/js/bootstrap-datepicker.js"></script>
         <script src="<?php echo base_url(); ?>html/js/bootstrap-datepicker.ja.js"></script>
         <script src="<?php echo base_url(); ?>html/js/base.js"></script>
@@ -70,7 +70,7 @@ and open the template in the editor.
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">音楽<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="<?php echo base_url() ?>index.php/music">一覧</a></li>
-                                <li><a href="<?php echo base_url() ?>index.php/music/register">登録</a></li>
+                                <li><a href="<?php echo base_url() ?>index.php/music/input">登録</a></li>
                                 <li><a href="<?php echo base_url() ?>index.php/statistic">ランキング</a></li>
                                 <!--<li class="divider"></li>!-->
                             </ul>

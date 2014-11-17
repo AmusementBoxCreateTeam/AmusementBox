@@ -8,9 +8,9 @@ class Music extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->output->enable_profiler(TRUE);
-        $this->config->load('user');
+        $this->config->load('base');
         $this->load->model(array('musics'));
-        $this->load->library(array('pagination'));
+        $this->load->library(array('pagination', 'form_validation'));
     }
 
     public function index() {
@@ -23,7 +23,7 @@ class Music extends CI_Controller {
         }
 
         $data['list'] = $this->musics->get_list($search, $data['per_page']);
-        
+
         //ページング
         //件数を取得
         $data['count_row'] = $this->musics->get_count_row($search);
@@ -49,12 +49,95 @@ class Music extends CI_Controller {
         $data['paging'] = '';
         $data['paging'] = $this->pagination($url, $data['count_row']);
         $data['start_row'] = ($data['count_row'] === 0) ? 0 : $data['per_page'] + 1;
-        $data['end_row'] = ($data['count_row'] === 0 || $data['count_row'] <= $this->config->item('disp_num')) ? 0 : $data['per_page'] + $this->config->item('disp_num');
-
-        $this->load->view('music/index',$data);
+        $data['end_row'] = ($data['count_row'] === 0) ? 0 : $data['per_page'] + count($data['list']);
+        $this->load->view('music/index', $data);
     }
-    
-    
+
+    public function input($id = '') {
+        if (!empty($id)) {
+            //編集
+            $data['method'] = '編集';
+            $data['id'] = $id;
+            $data['data'] = $this->musics->get_music($id);
+        } else {
+            //登録
+            $data['method'] = '登録';
+        }
+        $this->load->view('music/input', $data);
+    }
+
+    public function conf($id = '') {
+
+        if (empty($_POST)) {
+            show_404();
+            exit();
+        }
+        $data['post'] = $this->input->post();
+        if (!empty($id)) {
+            //編集
+            $data['method'] = '編集';
+            $data['id'] = $id;
+        } else {
+            //登録
+            $data['method'] = '登録';
+        }
+        $this->set_validation_rules();
+        if ($this->form_validation->run() === false) {
+            $this->load->view('music/input', $data);
+        } else {
+            $this->load->view('music/conf', $data);
+        }
+    }
+
+    public function comp_temp($id = '') {
+        if (empty($_POST)) {
+            show_404();
+            exit();
+        }
+        if (!empty($id)) {
+            //編集
+            $this->musics->update_music($id, $this->input->post());
+        } else {
+            //登録
+            $this->musics->insert_music($this->input->post());
+        }
+        $this->set_validation_rules();
+        if ($this->form_validation->run() === false) {
+            show_404();
+            exit();
+        }
+        //$this->comp();
+        redirect('music/comp');
+    }
+
+    public function comp($id = '') {
+        if (!empty($id)) {
+            //編集
+            $data['method'] = '編集';
+        } else {
+            //登録
+            $data['method'] = '登録';
+        }
+        $this->load->view('music/comp', $data);
+    }
+
+    public function delete_temp($id = '') {
+        if (empty($id)) {
+            show_404();
+            exit();
+        }
+        $this->musics->delete_music($id);
+        redirect('music/delete/' . $id);
+    }
+
+    public function delete($id = '') {
+        if (empty($id)) {
+            show_404();
+            exit();
+        }
+        $this->load->view('music/delete_comp');
+    }
+
     /**
      * ページング設定
      * @param type $url
@@ -72,6 +155,18 @@ class Music extends CI_Controller {
         $this->pagination->initialize($config);
 
         return $this->pagination->create_links();
+    }
+
+    public function set_validation_rules() {
+        $this->form_validation->set_rules('song_title', '曲名', 'required');
+        $this->form_validation->set_rules('lyricist', '作詞', 'required');
+        $this->form_validation->set_rules('composer', '作曲', 'required');
+        $this->form_validation->set_rules('singer', '歌手', 'required');
+        $this->form_validation->set_rules('genre', 'ジャンル', 'required');
+        $this->form_validation->set_rules('song_time', '曲の長さ', 'required');
+        $this->form_validation->set_rules('release_date', 'リリース日', 'required');
+
+        $this->form_validation->set_error_delimiters('<p class="error">※', '</p>');
     }
 
 }

@@ -75,6 +75,20 @@ class Musics extends CI_Model {
             return 0;
         }
     }
+    
+    function get_music($id=''){
+        $this->db->where('id',$id);
+        $this->db->from('songs');
+        $query = $this->db->get();
+        
+        if($query->num_rows() !== 1){
+            echo $query->num_rows();
+            show_404();
+            eixt();
+        }
+        
+        return $query->row();
+    }
 
     function create_where($search = '') {
         $where = array();
@@ -141,6 +155,45 @@ class Musics extends CI_Model {
         }
 
         return $query->result();
+    }
+
+    function insert_music($data) {
+        $this->db->trans_start();
+        $set_data = $this->create_set_data($data);
+        $this->db->set($set_data);
+        $this->db->insert('songs');
+        $this->db->trans_complete();
+    }
+
+    function update_music($id, $data) {
+        $this->db->trans_start();
+        $set_data = $this->create_set_data($data);
+        $this->db->set($set_data);
+        $this->db->where('id',$id);
+        $this->db->update('songs');
+        $this->db->trans_complete();
+    }
+
+    private function create_set_data($data) {
+        $set_data = array();
+        $set_data = array(
+            'song_title' => $data['song_title'],
+            'lyricist' => $data['lyricist'],
+            'composer' => $data['composer'],
+            'singer' => $data['singer'],
+            'genre' => $data['genre'],
+            'song_time' => $data['song_time'],
+            'release_date' => $data['release_date']
+        );
+
+        return $set_data;
+    }
+    
+    function delete_music($id){
+        $this->db->trans_start();
+        $this->db->where('id',$id);
+        $this->db->delete('songs');
+        $this->db->trans_complete();
     }
 
 }

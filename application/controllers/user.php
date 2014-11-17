@@ -8,7 +8,7 @@ class User extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->output->enable_profiler(TRUE);
-        $this->config->load('user');
+        $this->config->load('base');
         $this->load->model(array('users'));
         $this->load->library(array('pagination', 'conversion_age_birthday'));
     }
@@ -63,7 +63,7 @@ class User extends CI_Controller {
         $data['paging'] = '';
         $data['paging'] = $this->pagination($url, $data['count_row']);
         $data['start_row'] = ($data['count_row'] === 0) ? 0 : $data['per_page'] + 1;
-        $data['end_row'] = ($data['count_row'] === 0 || $data['count_row'] <= $this->config->item('disp_num')) ? 0 : $data['per_page'] + $this->config->item('disp_num');
+        $data['end_row'] = ($data['count_row'] === 0) ? 0 : $data['per_page'] + count($data['list']);
         $this->load->view('user/index', $data);
     }
 
