@@ -3,7 +3,7 @@
     <h2>音楽一覧</h2>
     <?php
     $attributes = array('class' => 'form-inline', 'role' => 'form', 'method' => 'get');
-    echo form_open('user', $attributes);
+    echo form_open('music', $attributes);
     ?>
     <?php echo validation_errors(); ?>
     <div class="panel panel-info">
@@ -25,19 +25,32 @@
                     <th>歌手</th><td> <input name="singer" type="text" placeholder="歌手"  value="<?php echo!empty($search['singer']) ? $search['singer'] : ''; ?>"/></td>
                 </tr>
                 <tr>
-                    <th>ジャンル</th><td> <input name="genre" type="text" placeholder="ジャンル"  value="<?php echo!empty($search['genre']) ? $search['genre'] : ''; ?>"/></td>
+                    <th>ジャンル</th>
+                    <td>
+                        <select name="genre">
+                            <?php
+                            $is_edit = !empty($search['genre']) ? TRUE : FALSE;
+                            ?>
+                            <option value="" <?php echo set_select('genre', '', ($is_edit && $search['genre'] === '') ? TRUE : FALSE); ?>></option>
+                            <option value="J-POP" <?php echo set_select('genre', 'J-POP', ($is_edit && $search['genre'] === 'J-POP') ? TRUE : FALSE); ?>>J-POP</option>
+                            <option value="ROCK" <?php echo set_select('genre', 'ROCK', ($is_edit && $search['genre'] === 'ROCK') ? TRUE : FALSE); ?>>ROCK</option>
+                            <option value="HIPHOP" <?php echo set_select('genre', 'HIPHOP', ($is_edit && $search['genre'] === 'HIPHOP') ? TRUE : FALSE); ?>>HIPHOP</option>
+                            <option value="アニソン" <?php echo set_select('genre', 'アニソン', ($is_edit && $search['genre'] === 'アニソン') ? TRUE : FALSE); ?>>アニソン</option>
+                            <option value="童謡" <?php echo set_select('genre', '童謡', ($is_edit && $search['genre'] === '童謡') ? TRUE : FALSE); ?>>童謡</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <th>リリース日</th>
                     <td>
                         <div class="input-group">
                             <!--<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>-->
-                            <input id="datepicker1" class="input-sm"  name="release_date_over" type="text" placeholder="登録日（以上）" readonly value="<?php echo!empty($search['entry_date_over']) ? $search['entry_date_over'] : ''; ?>"/>
+                            <input id="datepicker1" class="input-sm"  name="release_date_over" type="text" placeholder="リリース日（以上）" readonly value="<?php echo!empty($search['release_date_over']) ? $search['release_date_over'] : ''; ?>"/>
                         </div>
                         <div class="input-group">
                             &nbsp;～&nbsp;
                             <!--<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>-->
-                            <input id="datepicker2" class="input-sm" name="releases_date_under" type="text" placeholder="登録日（以下）" readonly value="<?php echo!empty($search['entry_date_under']) ? $search['entry_date_under'] : ''; ?>"/>
+                            <input id="datepicker2" class="input-sm" name="release_date_under" type="text" placeholder="リリース日（以下）" readonly value="<?php echo!empty($search['release_date_under']) ? $search['release_date_under'] : ''; ?>"/>
                         </div>
                     </td>
                 </tr>
@@ -59,7 +72,6 @@
             <th class="col-xs-1 col-sm-1 col-md-1">ジャンル</th>
             <th class="col-xs-2 col-sm-2 col-md-2">リリース日</th>
             <th class="col-xs-1 col-sm-1 col-md-1">編集</th>
-            <th class="col-xs-1 col-sm-1 col-md-1">削除</th>
         </tr>
         <?php if (!empty($list)) { ?>
             <?php foreach ($list as $val) { ?>
@@ -71,8 +83,7 @@
                     <td><?php echo $val->song_time ?></td>
                     <td><?php echo $val->genre ?></td>
                     <td><?php echo $val->release_date ?></td>
-                    <td><button class="btn-success" type="button" name="edit" value="編集" onclick="location.href='<?php echo base_url().'index.php/music/input/'.$val->id ?>'">編集</button></td>
-                    <td><button class="btn-danger" type="button" name="delete" value="削除" onclick="delete_conf('<?php echo $val->id ?>','<?php echo $val->song_title ?>')">削除</button></td>
+                    <td><button class="btn-success" type="button" name="edit" value="編集" onclick="location.href = '<?php echo base_url() . 'index.php/music/input/' . $val->id ?>'">編集</button></td>
                 </tr>
                 <?php
             }
@@ -85,11 +96,11 @@
 </div>
 <script type="text/javascript">
     <!--
-function delete_conf(id,title){
-	if(window.confirm(title+'を削除してもよろしいですか？')){
-		location.href = "<?php echo base_url().'index.php/music/delete_temp/'?>"+id;
+function delete_conf(id, title) {
+        if (window.confirm(title + 'を削除してもよろしいですか？')) {
+            location.href = "<?php echo base_url() . 'index.php/music/delete_temp/' ?>" + id;
         }
-}
-    -->
+    }
+  -->
 </script>
 <?php $this->load->view('common/footer'); ?>

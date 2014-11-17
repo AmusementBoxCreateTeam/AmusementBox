@@ -42,7 +42,7 @@ class Music extends CI_Controller {
             }
             $query = substr_replace($query, '?', 0, 1);
         }
-        $url = base_url() . 'index.php/user';
+        $url = base_url() . 'index.php/music';
         if (!empty($query)) {
             $url .= $query;
         }

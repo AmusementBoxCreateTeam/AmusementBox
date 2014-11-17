@@ -23,16 +23,38 @@ class Statistics extends CI_Model {
         $this->db->join('users', 'historys.user_id = users.id', 'left');
         $this->db->join('songs', 'historys.song_id = songs.id', 'left');
         $this->db->group_by('songs.id');
-        $this->db->order_by('used_num','desc');
-        $this->db->limit('5');
-        $where = $this->rank5_where($search);
+        $this->db->order_by('used_num', 'desc');
+        $this->db->order_by('song_title', 'asc');
+        $this->db->limit('100');
+        $where = $this->rank_where($search);
         $this->db->where($where);
 
         $query = $this->db->get();
         return $query->result();
     }
 
-    private function rank5_where($search) {
+    function rank_detail($id) {
+        $this->db->select('songs.id as song_id');
+        $this->db->select('songs.song_title');
+        $this->db->select('songs.lyricist');
+        $this->db->select('songs.composer');
+        $this->db->select('songs.singer');
+        $this->db->select('songs.genre');
+        $this->db->select('count(songs.id) as used_num');
+        $this->db->from('historys');
+        $this->db->join('users', 'historys.user_id = users.id', 'left');
+        $this->db->join('songs', 'historys.song_id = songs.id', 'left');
+        $this->db->group_by('songs.id');
+        $this->db->order_by('used_num', 'desc');
+        $this->db->order_by('song_title', 'asc');
+        $this->db->limit('100');
+        $this->db->where('songs.id',$id);
+
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    private function rank_where($search) {
         $where = array();
 
         if (!empty($search['gender'])) {
@@ -40,7 +62,7 @@ class Statistics extends CI_Model {
         }
         if (!empty($search['age'])) {
             $age_over = $this->conversion_age_birthday->conversion_date($search['age']);
-            $age_under = $this->conversion_age_birthday->conversion_date($search['age']+9);
+            $age_under = $this->conversion_age_birthday->conversion_date($search['age'] + 9);
             $where += array('users.birthday <=' => $age_over);
             $where += array('users.birthday >=' => $age_under);
         }

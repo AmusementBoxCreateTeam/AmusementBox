@@ -1,18 +1,20 @@
 <?php $this->load->view('common/header'); ?>
-<?php echo form_open('statistic/rank5'); ?>
+<?php echo form_open('statistic/rank'); ?>
 <div class="container-fluid">
     <div class="panel panel-info">
         <div class="panel-heading">
-            <div class="panel-title">音楽ランキングTOP5</div>
+            <div class="panel-title">音楽ランキングTOP100</div>
         </div>
         <div class="panel-body">
+            <span>男女の選択：</span>
             <select name="gender">
-                <option value="" <?php echo set_select('gender', ''); ?> >男女の選択</option>
+                <option value="" <?php echo set_select('gender', ''); ?> ></option>
                 <option value="1" <?php echo set_select('gender', '1'); ?>>男性</option>
                 <option value="0" <?php echo set_select('gender', '0'); ?>>女性</option>
             </select>
+            <span>世代の選択：</span>
             <select name="age">
-                <option valeu="" <?php echo set_select('age', ''); ?>>年代の選択</option>
+                <option valeu="" <?php echo set_select('age', ''); ?>></option>
                 <option value="10" <?php echo set_select('age', '10'); ?>>10代</option>
                 <option value="20" <?php echo set_select('age', '20'); ?>>20代</option>
                 <option value="30" <?php echo set_select('age', '30'); ?>>30代</option>
@@ -49,7 +51,7 @@
                             <td><?php echo $val->singer ?></td>
                             <td><?php echo $val->genre ?>   </td>
                             <td><?php echo $val->used_num ?>   </td>
-                            <td><a href="<?php base_url().'index.php/music/detail' ?>">詳細</a></td>
+                            <td><a href="<?php echo base_url() . 'index.php/statistics/rank_detail/' . $val->song_id ?>">詳細</a></td>
                         </tr>
                         <?php
                         $i++;
@@ -57,7 +59,6 @@
                     ?>
                 <?php } ?>
             </table>
-            <a href="#">全ランキングを表示する</a>
         </div>
     </div>
 </div>

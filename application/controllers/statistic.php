@@ -13,10 +13,10 @@ class Statistic extends CI_Controller {
 
     public function index() {
         $data['list'] = $this->statistics->get_rank();
-        $this->load->view('statistic/index.php',$data);
+        $this->load->view('statistic/index.php', $data);
     }
 
-    public function rank5() {
+    public function rank() {
         if (empty($_POST)) {
             show_404();
             exit();
@@ -27,7 +27,16 @@ class Statistic extends CI_Controller {
         } else {
             $data['list'] = $this->statistics->get_rank($this->input->post());
         }
-        $this->load->view('statistic/index.php',$data);
+        $this->load->view('statistic/index.php', $data);
+    }
+
+    public function rank_detail($id = '') {
+        if (empty($id)) {
+            show_404();
+            exit();
+        }
+        $data['list'] = $this->statistics->rank_detail;
+        $this->load->view('statistic/detail', $data);
     }
 
     private function configuration() {

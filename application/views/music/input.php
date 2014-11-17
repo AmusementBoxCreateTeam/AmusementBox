@@ -30,17 +30,28 @@
                 </tr>
                 <tr>
                     <th>ジャンル&nbsp;<span class="btn-danger">必須</span></th>
-                    <td><input type="text" name="genre" placeholder="ジャンル" value="<?php echo set_value('genre', !empty($data->genre)?$data->genre:'') ?>"></td>
+                    <td>
+                        <select name="genre">
+                            <?php
+                            $is_edit = !empty($data->genre)?TRUE:FALSE;
+                            ?>
+                            <option value="J-POP" <?php echo set_select('genre', 'J-POP', ($is_edit && $data->genre === 'J-POP')?TRUE:FALSE); ?>>J-POP</option>
+                            <option value="ROCK" <?php echo set_select('genre', 'ROCK', ($is_edit && $data->genre === 'ROCK')?TRUE:FALSE); ?>>ROCK</option>
+                            <option value="HIPHOP" <?php echo set_select('genre', 'HIPHOP', ($is_edit && $data->genre === 'HIPHOP')?TRUE:FALSE); ?>>HIPHOP</option>
+                            <option value="アニソン" <?php echo set_select('genre', 'アニソン', ($is_edit && $data->genre === 'アニソン')?TRUE:FALSE); ?>>アニソン</option>
+                            <option value="童謡" <?php echo set_select('genre', '童謡', ($is_edit && $data->genre === '童謡')?TRUE:FALSE); ?>>童謡</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <th>曲の長さ&nbsp;<span class="btn-danger">必須</span></th>
-                    <td><input type="text" name="song_time" placeholder="曲の長さ" value="<?php echo set_value('song_time', !empty($data->song_time)?$data->song_time:'') ?>"></td>
+                    <td><input type="text" name="song_time" placeholder="00:00:00" value="<?php echo set_value('song_time', !empty($data->song_time)?$data->song_time:'') ?>"></td>
                 </tr>
                 <tr>
                     <th>リリース日&nbsp;<span class="btn-danger">必須</span></th>
                     <td>
                         <div class="input-group">
-                            <input id="datepicker1" class="input-sm"  name="release_date" type="text" placeholder="登録日" readonly value="<?php echo set_value('release_date', !empty($data->release_date)?$data->release_date:'') ?>"/>
+                            <input id="datepicker1" class="input-sm"  name="release_date" type="text" placeholder="リリース日" readonly value="<?php echo set_value('release_date', !empty($data->release_date)?$data->release_date:'') ?>"/>
                         </div>
                     </td>
                 </tr>
