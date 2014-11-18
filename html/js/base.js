@@ -21,4 +21,5 @@ $(function() {
             startDate: $('datepicker1').val()
         });
     }
+    
 });

@@ -9,22 +9,27 @@ $iw = 200; // 画像の横幅
 $ih = 200; // 画像の縦幅
 $rs = 270; // 開始角度(上：270)
 // データ
-$data[0] = 1;
-$data[1] = 2;
+/*
+$data[0] = $this->session->userdata['woman'];
+$data[1] = $this->session->userdata['man'];
+ * 
+ */
+$data[0] = 12;
+$data[1] = 0;
 
 // 色の定義(データの数だけ必要)
+$white = imagecolorallocate($im,255,255,255);
 $red = imagecolorallocate($im, 255, 0, 0);
 $blue = imagecolorallocate($im, 0, 0, 255);
 $cd = array($red, $blue);
 
 // 合計値の計算
 $length = count($data);
-$m = 2;
-/*
+
 for ($i = 0; $i <= $length; $i++) {
     $m += $data[$i];
 }
- */
+
 
 // 画像の描画
 for ($i = 0; $i < $length; $i++) {

@@ -8,6 +8,7 @@ class Statistic extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->output->enable_profiler(TRUE);
+        $this->load->library(array('session'));
         $this->load->model(array('statistics'));
     }
 
@@ -35,11 +36,17 @@ class Statistic extends CI_Controller {
             show_404();
             exit();
         }
+        //音楽詳細
+        $data['detail'] = $this->statistics->rank_graph($id,'','');
         //女性
-        $data['woman'] = $this->statistics->rank_gender_rate($id,0);
+        $data['woman'] = $this->statistics->rank_graph($id,0,'');
         //男性
-        $data['man'] = $this->statistics->rank_gender_rate($id,1);
-        $this->load->view('statistic/detail', $data);
+        $data['man'] = $this->statistics->rank_graph($id,1,'');
+        
+        for($i=10; $i<100; $i = $i+10){
+           $data['a'.$i] =  $this->statistics->rank_graph($id,'',$i); 
+        }
+        $this->load->view('statistic/detail',$data);
     }
 
     private function configuration() {
