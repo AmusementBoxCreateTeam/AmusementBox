@@ -33,8 +33,8 @@ class Statistics extends CI_Model {
         return $query->result();
     }
 
-    function rank_graph($id, $gender, $age) {
-        $isList = ($gender === '' && $age === '') ? TRUE : FALSE;
+    function rank_graph($id, $gender, $age, $year) {
+        $isList = ($gender === '' && $age === '' && $year === '') ? TRUE : FALSE;
         if ($isList === TRUE) {
             $this->db->select('songs.song_title');
             $this->db->select('songs.lyricist');
@@ -58,6 +58,10 @@ class Statistics extends CI_Model {
             $search['age'] = $age;
             $where = $this->rank_where($search);
             $this->db->where($where);
+        }
+
+        if ($year !== '') {
+            $this->db->where("DATE_FORMAT(historys.use_datetime,'%Y')", $year);
         }
 
         $this->db->where('songs.id', $id);
@@ -87,6 +91,9 @@ class Statistics extends CI_Model {
             $age_under = $this->conversion_age_birthday->conversion_date($search['age'] + 9);
             $where += array('users.birthday <=' => $age_over);
             $where += array('users.birthday >=' => $age_under);
+        }
+        if (!empty($search['genre'])) {
+            $where += array('songs.genre' => $search['genre']);
         }
         if (!empty($search['daily'])) {
             $time = date("Y-m-d", strtotime("-1 day"));

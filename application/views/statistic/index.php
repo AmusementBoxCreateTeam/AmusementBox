@@ -25,6 +25,16 @@
                 <option value="80" <?php echo set_select('age', '80'); ?>>80代</option>
                 <option value="90" <?php echo set_select('age', '90'); ?>>90代</option>
             </select>
+            <span>ジャンル：</span>
+            <select name="genre">
+                <option valeu="" <?php echo set_select('genre', ''); ?>></option>
+                <option value="J-POP" <?php echo set_select('genre', 'J-POP'); ?>>J-POP</option>
+                <option valeu="ROCK" <?php echo set_select('genre', 'ROCK'); ?>>ROCK</option>
+                <option value="アニソン" <?php echo set_select('genre', 'アニソン"'); ?>>アニソン</option>
+                <option value="童謡" <?php echo set_select('genre', '童謡'); ?>>童謡</option>
+                <option value="レゲエ" <?php echo set_select('genre', 'レゲエ'); ?>>レゲエ</option>
+                <option value="HIPHOP" <?php echo set_select('genre', 'HIPHOP'); ?>>HIPHOP</option>
+            </select>
             <div class="text-left" style="margin:10px;"><button type="submit" class="btn btn-info"><i class="glyphicon glyphicon-search"></i>検索</button></div>
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
                 <div class="btn-group" role="group">
