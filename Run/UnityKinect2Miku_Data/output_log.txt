@@ -1,0 +1,123 @@
+Initialize engine version: 4.5.2f1 (9abb1b59b47c)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [nvd3dum.dll 9.18.13.4052]
+    Renderer: NVIDIA GeForce GTX 680
+    Vendor:   NVIDIA
+    VRAM:     1985 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=0 INTZ=1 RAWZ=0 NULL=1 RESZ=0 SlowINTZ=0
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Takayuki\Documents\UnityKinect2Miku\Run\UnityKinect2Miku_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Takayuki\Documents\UnityKinect2Miku\Run\UnityKinect2Miku_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Takayuki\Documents\UnityKinect2Miku\Run\UnityKinect2Miku_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Takayuki\Documents\UnityKinect2Miku\Run\UnityKinect2Miku_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Takayuki\Documents\UnityKinect2Miku\Run\UnityKinect2Miku_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Takayuki\Documents\UnityKinect2Miku\Run\UnityKinect2Miku_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Takayuki\Documents\UnityKinect2Miku\Run\UnityKinect2Miku_Data\Managed\BulletXNA-Unity.dll (this message is harmless)
+Loading C:\Users\Takayuki\Documents\UnityKinect2Miku\Run\UnityKinect2Miku_Data\Managed\BulletXNA-Unity.dll into Unity Child Domain
+- Completed reload, in  0.212 seconds
+desktop: 1920x1200 59Hz; virtual: 1920x1200 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: C:\Users\Takayuki\Documents\UnityKinect2Miku\Run\UnityKinect2Miku_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Takayuki\Documents\UnityKinect2Miku\Run\UnityKinect2Miku_Data\Managed\System.dll (this message is harmless)
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1783)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1783)
+
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+MMD4MecanimBulletPhysics:Awake Native Plugin.
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+DllNotFoundException: MMD4MecanimBulletPhysics
+  at (wrapper managed-to-native) MMD4MecanimBulletPhysics:MMD4MecanimBulletPhysicsInitialize ()
+  at MMD4MecanimBulletPhysics._InitializeEngine () [0x00000] in <filename unknown>:0 
+  at MMD4MecanimBulletPhysics._Initialize () [0x00000] in <filename unknown>:0 
+  at MMD4MecanimBulletPhysics.Awake () [0x00000] in <filename unknown>:0 
+UnityEngine.GameObject:Internal_AddComponentWithType(Type)
+UnityEngine.GameObject:AddComponent(Type)
+UnityEngine.GameObject:AddComponent()
+MMD4MecanimBulletPhysics:get_instance()
+MMD4MecanimModel:_InitializePhysicsEngine()
+MMD4MecanimModel:Initialize()
+MMD4MecanimModel:Start()
+ 
+(Filename:  Line: -1)
+
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+DllNotFoundException: MMD4MecanimBulletPhysics
+  at (wrapper managed-to-native) MMD4MecanimBulletPhysics:MMD4MecanimBulletPhysicsCreateWorld (intptr,int,intptr,int)
+  at MMD4MecanimBulletPhysics._CreateWorld (IntPtr iValues, Int32 iValueLength, IntPtr fValues, Int32 fValueLength) [0x00000] in <filename unknown>:0 
+  at MMD4MecanimBulletPhysics+World.Create (.WorldProperty worldProperty) [0x00000] in <filename unknown>:0 
+  at MMD4MecanimBulletPhysics+MMDModel.Create (.MMD4MecanimModel model) [0x00000] in <filename unknown>:0 
+  at MMD4MecanimBulletPhysics.CreateMMDModel (.MMD4MecanimModel model) [0x00000] in <filename unknown>:0 
+  at MMD4MecanimModel._InitializePhysicsEngine () [0x00000] in <filename unknown>:0 
+  at MMD4MecanimModel.Initialize () [0x00000] in <filename unknown>:0 
+  at MMD4MecanimModel.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/MMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/.\libMMD4MecanimBulletPhysics
+Fallback handler could not load library C:/Users/Takayuki/Documents/UnityKinect2Miku/Run/UnityKinect2Miku_Data/Mono/libMMD4MecanimBulletPhysics
+DllNotFoundException: MMD4MecanimBulletPhysics
+  at (wrapper managed-to-native) MMD4MecanimBulletPhysics:MMD4MecanimBulletPhysicsFinalize ()
+  at MMD4MecanimBulletPhysics._FinalizeEngine () [0x00000] in <filename unknown>:0 
+  at MMD4MecanimBulletPhysics.OnDestroy () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
