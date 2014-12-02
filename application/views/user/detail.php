@@ -31,37 +31,6 @@
             </table>
         </div>
     </div>
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <div class="panel-title">利用情報</div>
-        </div>
-        <div class="panel-body">
-            <table class="table table-bordered">
-                <?php
-                foreach ($user as $val) {
-                    ?>
-                    <tr>
-                        <th>累計利用額</th>
-                        <td><?php echo $val->nickname ?></td>
-                    </tr>
-                    <tr>
-                        <th>よく利用するジャンル</th>
-                        <td><?php echo $val->entry_date ?></td>
-                    </tr>
-                    <tr>
-                        <th>よく利用する曲</th>
-                        <td><?php echo $val->update_date ?></td>
-                    </tr>
-                    <tr>
-                        <th>よく利用する場所</th>
-                        <td><?php echo $val->update_date ?></td>
-                    </tr>
-                    <?php
-                }
-                ?>
-            </table>
-        </div>
-    </div>
     <table class="table table-hover">
         <tbody>
             <tr class="success">

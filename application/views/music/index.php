@@ -64,13 +64,14 @@
 <table class="table table-hover">
     <tbody>
         <tr class="success">
-            <th class="col-xs-3 col-sm-3 col-md-3">曲名</th>
+            <th class="col-xs-2 col-sm-2 col-md-2">曲名</th>
             <th class="col-xs-2 col-sm-2 col-md-2">作詞</th>
             <th class="col-xs-2 col-sm-2 col-md-2">作曲</th>
             <th class="col-xs-2 col-sm-2 col-md-2">歌手</th>
             <th class="col-xs-1 col-sm-1 col-md-1">曲の長さ</th>
             <th class="col-xs-1 col-sm-1 col-md-1">ジャンル</th>
-            <th class="col-xs-2 col-sm-2 col-md-2">リリース日</th>
+            <th class="col-xs-1 col-sm-1 col-md-1">リリース日</th>
+            <th class="col-xs-1 col-sm-1 col-md-1">詳細</th>
             <th class="col-xs-1 col-sm-1 col-md-1">編集</th>
         </tr>
         <?php if (!empty($list)) { ?>
@@ -83,6 +84,7 @@
                     <td><?php echo $val->song_time ?></td>
                     <td><?php echo $val->genre ?></td>
                     <td><?php echo $val->release_date ?></td>
+                    <td><a href="<?php echo base_url() . 'index.php/statistic/rank_detail/' . $val->id ?>">詳細</a></td>
                     <td><button class="btn-success" type="button" name="edit" value="編集" onclick="location.href = '<?php echo base_url() . 'index.php/music/input/' . $val->id ?>'">編集</button></td>
                 </tr>
                 <?php
