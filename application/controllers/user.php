@@ -11,6 +11,8 @@ class User extends CI_Controller {
         $this->config->load('base');
         $this->load->model(array('users'));
         $this->load->library(array('pagination', 'conversion_age_birthday'));
+        
+        $this->logined->logincheck();
     }
 
     public function index() {

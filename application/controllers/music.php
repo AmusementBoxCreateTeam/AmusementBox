@@ -11,6 +11,8 @@ class Music extends CI_Controller {
         $this->config->load('base');
         $this->load->model(array('musics'));
         $this->load->library(array('pagination', 'form_validation'));
+        
+        $this->logined->logincheck();
     }
 
     public function index() {
