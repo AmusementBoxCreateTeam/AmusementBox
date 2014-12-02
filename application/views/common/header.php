@@ -13,7 +13,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="<?php echo base_url(); ?>html/bootstrap/css/bootstrap.min.css">
         <!-- Optional theme -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>html/bootstrap/css/bootstrap-theme.min.css">
-         <link rel="stylesheet" href="<?php echo base_url(); ?>html/css/base.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>html/css/base.css">
         <!-- Latest compiled and minified JavaScript -->
         <script src="<?php echo base_url(); ?>html/bootstrap/js/bootstrap.min.js"></script>
         <!-- dispicker -->
@@ -46,7 +46,6 @@ and open the template in the editor.
 
                 <!-- グローバルナビの中身 -->
                 <div class="collapse navbar-collapse" id="nav-menu-1">
-
                     <!-- 各ナビゲーションメニュー -->
                     <ul class="nav navbar-nav">
 
@@ -76,8 +75,10 @@ and open the template in the editor.
                             </ul>
                         </li>
                     </ul>
+                    <ul class="nav navbar-brand pull-right">
+                        <li><button class="btn-default" onclick="location = '<?php echo base_url() . 'index.php/index/logout' ?>'">ログアウト</button></li>
+                    </ul>
                 </div>
             </div>
         </nav>
-
 

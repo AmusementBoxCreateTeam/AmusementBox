@@ -10,6 +10,8 @@ class Statistic extends CI_Controller {
         $this->output->enable_profiler(TRUE);
         $this->load->library(array('session'));
         $this->load->model(array('statistics'));
+        
+        $this->logined->logincheck();
     }
 
     public function index() {
