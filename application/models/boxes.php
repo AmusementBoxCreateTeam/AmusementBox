@@ -76,12 +76,60 @@ class Boxes extends CI_Model {
      *
      */
     public function add($newBox) {
-        $sql = "insert into boxes (point, prefectures) ";
-        $sql .= "values(geomFromText('point(". $newBox['x']. " ". $newBox['y']. ")'), ?)";
-        $this->db->query($sql, array($newBox['prefectures']));
+        $points = $this->getPointsFromAddress($newBox['address']);
+
+        $sql = "insert into boxes (point, prefectures, address) ";
+        $sql .= "values(geomFromText('point(". $points['x']. " ". $points['y']. ")'), ?, ?)";
+        $this->db->query($sql, array($newBox['prefectures'], $newBox['address']));
     }
 
 
+    /**
+     * Google Maps APIからJSONオブジェクトを取得する
+     */
+    private function getMaps($parameter) {
+        // APIリクエストURLの作成
+        $url = 'http://maps.googleapis.com/maps/api/geocode/json?language=ja&sensor=true_or_false';
+        if (array_key_exists('latlng', $parameter)) {
+            $url .= '&latlng='. $parameter['latlng'];
+        }
+        if (array_key_exists('address', $parameter)) {
+            $url .= '&address='. $parameter['address'];
+        }
+
+        // JSONの取得
+        $json = "";
+        $cp = curl_init();
+        curl_setopt($cp, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($cp, CURLOPT_URL, $url);
+        curl_setopt($cp, CURLOPT_TIMEOUT, 60);
+        $json = curl_exec($cp);
+        curl_close($cp);
+
+        // JSONを配列へデコード
+        $obj = json_decode($json);
+
+        return $obj;
+    }
+
+
+    /**
+     * 住所から緯度経度を取得する
+     */
+    private function getPointsFromAddress($address) {
+        $parameter = array('address' => $address);
+        $obj = $this->getMaps($parameter);
+
+        $points = false;
+        if ($obj['status'] == 'OK') {
+            $points = array(
+                'x' => $obj['result']['geometry']['location']['lng'],
+                'y' => $obj['result']['geometry']['location']['lat']
+            );
+        }
+
+        return $points;
+    }
 
 
 }
