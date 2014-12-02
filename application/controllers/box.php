@@ -10,6 +10,7 @@ class Box extends CI_Controller {
         $this->output->enable_profiler(TRUE);
         $this->config->load('box');
         $this->load->model(array('boxes'));
+        $this->logined->logincheck();
     }
 
     /**
@@ -35,10 +36,36 @@ class Box extends CI_Controller {
 
 
     /**
+     * 端末詳細ページ
+     */
+    public function detail() {
+        if (empty($_GET)) {
+            $this->load->view('box/index.php');
+        } else {
+            $this->config->load('api_keys');
+            $data['google_maps_key'] = $this->config->item('google_maps_key');
+            $data['box'] = $this->boxes->get_box($this->input->get('id'));
+            $this->load->view('box/detail.php', $data);
+        }
+    }
+
+
+
+    /**
      * 端末登録ページ
      */
     public function register() {
-        $this->load->view('box/index.php', $data);
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $this->set_validation_rules();
+            // テスト中につき必ずtrue
+            if ($this->form_validation->run() == true || true) {
+                $this->boxes->add($this->input->post());
+            }
+        }
+
+        $data['pref_list'] = $this->get_pref_list();
+        $this->load->view('box/register.php', $data);
 
     }
 

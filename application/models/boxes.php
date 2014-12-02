@@ -10,6 +10,26 @@ class Boxes extends CI_Model {
         parent::__construct();
         $this->load->database();
     }
+
+
+     /**
+      * 受け取ったIDの端末情報を返す
+      */
+    public function get_box($id) {
+        $this->db->select('id');
+        $this->db->select('entry_date');
+        $this->db->select('X(point) as x');
+        $this->db->select('Y(point) as y');
+        $this->db->select('delete_date');
+        $this->db->select('prefectures');
+        $this->db->from('boxes');
+        $this->db->where('id', $id);
+        
+        $query = $this->db->get();
+        
+        return $query->row();
+    }
+
     
 
     /**
@@ -21,6 +41,7 @@ class Boxes extends CI_Model {
         $this->db->select('X(point) as x');
         $this->db->select('Y(point) as y');
         $this->db->select('delete_date');
+        $this->db->select('prefectures');
         $this->db->from('boxes');
         $this->db->where($this->create_where($search));
         
@@ -49,5 +70,18 @@ class Boxes extends CI_Model {
 
         return $where;
     }
+
+
+    /**
+     *
+     */
+    public function add($newBox) {
+        $sql = "insert into boxes (point, prefectures) ";
+        $sql .= "values(geomFromText('point(". $newBox['x']. " ". $newBox['y']. ")'), ?)";
+        $this->db->query($sql, array($newBox['prefectures']));
+    }
+
+
+
 
 }
