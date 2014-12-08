@@ -44,10 +44,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>曲の長さ&nbsp;<span class="btn-danger">必須</span></th>
-                    <td><input type="text" name="song_time" placeholder="00:00:00" value="<?php echo set_value('song_time', !empty($data->song_time)?$data->song_time:'') ?>"></td>
-                </tr>
-                <tr>
                     <th>リリース日&nbsp;<span class="btn-danger">必須</span></th>
                     <td>
                         <div class="input-group">

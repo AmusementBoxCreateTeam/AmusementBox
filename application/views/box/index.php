@@ -53,14 +53,16 @@
 	        <th>登録日</th>
 	        <th>経度</th>
 	        <th>緯度</th>
+	        <th>都道府県</th>
 	    </tr>
 	    <?php if (!empty($list)) { ?>
 	        <?php foreach ($list as $val) { ?>
 	            <tr>
-	                <td><?php echo $val->id ?></td>
-	                <td><?php echo $val->entry_date ?></td>
-	                <td><?php echo $val->x ?></td>
-	                <td><?php echo $val->y ?></td>
+	                <td><a href="<?php echo base_url(); ?>index.php/box/detail?id=<?php echo $val->id; ?>"><?php echo $val->id ?></a></td>
+	                <td><?php echo $val->entry_date; ?></td>
+	                <td><?php echo $val->x; ?></td>
+	                <td><?php echo $val->y; ?></td>
+	                <td><?php echo $val->prefectures; ?></td>
 	            </tr>
 	            <?php
 	        }

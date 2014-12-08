@@ -13,9 +13,13 @@ class Index extends CI_Controller {
     }
 
     public function index() {
+        $data = '';
+        $is_try = $this->session->userdata('is_try');
         $user_id = $this->session->userdata('login_id');
         if (empty($user_id)) {
-            $data['error'] = '<p class="error">※IDもしくはPasswordが間違っています。</p>';
+            if ($is_try === TRUE) {
+                $data['error'] = '<p class="error">※IDもしくはPasswordが間違っています。</p>';
+            }
             $this->load->view('login', $data);
         } else {
             $this->load->view('index');
@@ -38,8 +42,11 @@ class Index extends CI_Controller {
                 $session_data = array(
                     'login_id' => $result->login_id
                 );
-                $this->session->set_userdata($session_data);
             }
+            $session_data += array(
+                'is_try' => TRUE
+            );
+            $this->session->set_userdata($session_data);
             redirect('index');
         }
     }
@@ -59,7 +66,7 @@ class Index extends CI_Controller {
             $result = $this->logins->get_forgot($this->input->post());
             if ($result !== 0) {
                 $password = substr(base_convert(md5(uniqid()), 16, 36), 0, 8);
-                $is_send = $this->_send_email($result->email, $password);
+                $is_send = $this->_send_email($result->login_id, $result->email, $password);
                 if ($is_send === false) {
                     //送信失敗
                     $data['error'] = '<p class="error">※メールが正常にされませんでした。</p>';
@@ -91,28 +98,30 @@ class Index extends CI_Controller {
 
     private function _validation_forgot() {
         $this->form_validation->set_rules('id', 'Login Id', 'requiredmin_length[4]|max_length[16]');
-        $this->form_validation->set_rules('email', 'email', 'required|valid_email|max_length[30]');
+        $this->form_validation->set_rules('email', 'email', 'required|valid_email|max_length[100]');
 
         $this->form_validation->set_error_delimiters('<p class="error">※', '</p>');
     }
 
-    private function _send_email($email, $password) {
+    private function _send_email($id, $email, $password) {
         $this->load->library('email');
 
         $this->email->set_newline("\r\n");
 
-        $this->email->from('AmusementSquare', 'Square管理画面');
+        $this->email->from('amusement_square_test@gmail.com', 'Square管理部');
         $this->email->to($email);
 
         $this->email->subject('パスワードの再発行');
         $this->email->message(
+                $id . " 様" .
+                "\n\n" .
                 '新しいパスワード：' . $password .
                 "\n\n" .
                 'このメールに心当りがない方はこちらまでご連絡ください。' .
                 "\n\n" .
                 'AmusementSquare管理部' .
                 "\n" .
-                'square@ezample.com'
+                'amusement_square_test@gmail.com'
         );
 
         return $this->email->send();

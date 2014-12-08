@@ -165,7 +165,7 @@ class Music extends CI_Controller {
         $this->form_validation->set_rules('composer', '作曲', 'required');
         $this->form_validation->set_rules('singer', '歌手', 'required');
         $this->form_validation->set_rules('genre', 'ジャンル', 'required');
-        $this->form_validation->set_rules('song_time', '曲の長さ', 'required');
+        #$this->form_validation->set_rules('song_time', '曲の長さ', 'required');
         $this->form_validation->set_rules('release_date', 'リリース日', 'required');
 
         $this->form_validation->set_error_delimiters('<p class="error">※', '</p>');

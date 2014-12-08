@@ -27,6 +27,7 @@ class Logins extends CI_Model {
     }
 
     public function get_forgot($input) {
+        $this->db->select('login_id');
         $this->db->select('email');
         $this->db->from('logins');
         $this->db->where('login_id', $input['id']);

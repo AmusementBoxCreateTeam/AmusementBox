@@ -71,8 +71,8 @@
             <th class="col-xs-1 col-sm-1 col-md-1">曲の長さ</th>
             <th class="col-xs-1 col-sm-1 col-md-1">ジャンル</th>
             <th class="col-xs-1 col-sm-1 col-md-1">リリース日</th>
-            <th class="col-xs-1 col-sm-1 col-md-1">詳細</th>
-            <th class="col-xs-1 col-sm-1 col-md-1">編集</th>
+            <th class="col-xs-0.5 col-sm-0.5 col-md-0.5">詳細</th>
+            <th class="col-xs-0.5 col-sm-0.5 col-md-0.5">編集</th>
         </tr>
         <?php if (!empty($list)) { ?>
             <?php foreach ($list as $val) { ?>
