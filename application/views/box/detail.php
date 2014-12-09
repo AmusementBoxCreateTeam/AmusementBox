@@ -10,11 +10,17 @@
             lng: $("#x").text(),
             zoom:16
         });
+        map.addMarker({
+            lat: $("#y").text(),
+            lng: $("#x").text(),
+            title: $("#box_id").text()
+        });
     });
+
 </script>
 <style>
 #map_canvas {
-    width: 95%;
+    width: 100%;
     height:500px;
 }
 </style>
@@ -29,7 +35,7 @@
             <table class="table table-bordered">
                 <tr>
                     <th>ID</th>
-                    <td><?php echo $box->id; ?></td>
+                    <td id='box_id'><?php echo $box->id; ?></td>
                 </tr>
                 <tr>
                     <th>端末登録日</th>
@@ -48,8 +54,8 @@
                     <td id="y"><?php echo $box->y; ?></td>
                 </tr>
                 <tr>
-                    <th>設置都道府県</th>
-                    <td><?php echo $box->prefectures; ?></td>
+                    <th>設置住所</th>
+                    <td><?php echo $box->address; ?></td>
                 </tr>
                 <tr>
                     <th>マップ</th>

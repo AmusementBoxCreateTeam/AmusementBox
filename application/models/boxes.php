@@ -21,7 +21,7 @@ class Boxes extends CI_Model {
         $this->db->select('X(point) as x');
         $this->db->select('Y(point) as y');
         $this->db->select('delete_date');
-        $this->db->select('prefectures');
+        $this->db->select('address');
         $this->db->from('boxes');
         $this->db->where('id', $id);
         
@@ -41,9 +41,10 @@ class Boxes extends CI_Model {
         $this->db->select('X(point) as x');
         $this->db->select('Y(point) as y');
         $this->db->select('delete_date');
-        $this->db->select('prefectures');
+        $this->db->select('address');
         $this->db->from('boxes');
         $this->db->where($this->create_where($search));
+        $this->db->like('address', $search['address'], 'after');
         
         $query = $this->db->get();
         
@@ -56,11 +57,6 @@ class Boxes extends CI_Model {
      */
     private function create_where($search) {
         $where = array();
-        if (!empty($search['pref'])) {
-            if ($search['pref'] != '指定しない') {
-                $where += array('prefectures =' => $search['pref']);
-            }
-        }
         if (!empty($search['entry_date_over'])) {
             $where += array('entry_date >=' => $search['entry_date_over']);
         }
@@ -76,12 +72,60 @@ class Boxes extends CI_Model {
      *
      */
     public function add($newBox) {
-        $sql = "insert into boxes (point, prefectures) ";
-        $sql .= "values(geomFromText('point(". $newBox['x']. " ". $newBox['y']. ")'), ?)";
-        $this->db->query($sql, array($newBox['prefectures']));
+        $points = $this->getPointsFromAddress($newBox['address']);
+
+        $sql = "insert into boxes (point, address) ";
+        $sql .= "values(geomFromText('point(". $points['x']. " ". $points['y']. ")'), ?)";
+        $this->db->query($sql, array($newBox['address']));
     }
 
 
+    /**
+     * Google Maps APIからJSONオブジェクトを取得する
+     */
+    private function getMaps($parameter) {
+        // APIリクエストURLの作成
+        $url = 'http://maps.googleapis.com/maps/api/geocode/json?language=ja&sensor=true_or_false';
+        if (array_key_exists('latlng', $parameter)) {
+            $url .= '&latlng='. $parameter['latlng'];
+        }
+        if (array_key_exists('address', $parameter)) {
+            $url .= '&address=日本,'. $parameter['address'];
+        }
+
+        // JSONの取得
+        $json = "";
+        $cp = curl_init();
+        curl_setopt($cp, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($cp, CURLOPT_URL, $url);
+        curl_setopt($cp, CURLOPT_TIMEOUT, 60);
+        $json = curl_exec($cp);
+        curl_close($cp);
+
+        // JSONを配列へデコード
+        $googleMapsData = json_decode($json, true);
+
+        return $googleMapsData;
+    }
+
+
+    /**
+     * 住所から緯度経度を取得する
+     */
+    private function getPointsFromAddress($address) {
+        $parameter = array('address' => $address);
+        $googleMapsData = $this->getMaps($parameter);
+
+        $points = false;
+        if ($googleMapsData['status'] == 'OK') {
+            $points = array(
+                'x' => $googleMapsData['results']['0']['geometry']['location']['lng'],
+                'y' => $googleMapsData['results']['0']['geometry']['location']['lat']
+            );
+        }
+
+        return $points;
+    }
 
 
 }

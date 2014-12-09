@@ -14,18 +14,9 @@
 	        <div class="panel-body">
 	            <table class="table table-bordered">
 	                <tr>
-	                    <th>設置都道府県</th>
+	                    <th>設置住所</th>
 	                    <td>
-	                    	<select name="pref">
-		                    <?php
-		                    foreach ($prefs as $value) {
-		                    	$selected = $value == $pref_selected ? " selected" : "";
-		                    ?>
-		                    	<option value="<?php echo $value; ?>"<?php echo $selected; ?>><?php echo $value; ?></option>
-		                    <?php
-		                    }
-		                    ?>
-	                    	</select>
+	                    	<input type="text" name="address" placeholder="住所" value="<?php echo $address; ?>" />
 	                    </td>
 	                </tr>
 	                <tr>
@@ -53,16 +44,16 @@
 	        <th>登録日</th>
 	        <th>経度</th>
 	        <th>緯度</th>
-	        <th>都道府県</th>
+	        <th>詳細</th>
 	    </tr>
 	    <?php if (!empty($list)) { ?>
 	        <?php foreach ($list as $val) { ?>
 	            <tr>
-	                <td><a href="<?php echo base_url(); ?>index.php/box/detail?id=<?php echo $val->id; ?>"><?php echo $val->id ?></a></td>
-	                <td><?php echo $val->entry_date; ?></td>
-	                <td><?php echo $val->x; ?></td>
-	                <td><?php echo $val->y; ?></td>
-	                <td><?php echo $val->prefectures; ?></td>
+	                <td><?php echo $val->id ?></td>
+	                <td><?php echo $val->entry_date ?></td>
+	                <td><?php echo $val->x ?></td>
+	                <td><?php echo $val->y ?></td>
+	                <td><a href="<?php echo base_url(). 'index.php/box/detail?id='. $val->id ?>">詳細</a></td>
 	            </tr>
 	            <?php
 	        }

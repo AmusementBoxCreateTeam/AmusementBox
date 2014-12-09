@@ -54,16 +54,18 @@
             <th class="col-xs-2 col-sm-2 col-md-2">年齢</th>
             <th class="col-xs-2 col-sm-2 col-md-2">性別</th>
             <th class="col-xs-2 col-sm-2 col-md-2">登録日</th>
-            <th class="col-xs-1 col-sm-1 col-md-1">削除日</th>
+            <th class="col-xs-2 col-sm-2 col-md-2">削除日</th>
+            <th class="col-xs-1 col-sm-1 col-md-1">詳細</th>
         </tr>
         <?php if (!empty($list)) { ?>
             <?php foreach ($list as $val) { ?>
                 <tr>
-                    <td><a href="<?php echo base_url() . 'index.php/user/detail/' . $val->id ?>"><?php echo $val->nickname ?></a></td>
+                    <td><?php echo $val->nickname ?></td>
                     <td><?php echo $val->age ?></td>
                     <td><?php echo $val->gender ?></td>
                     <td><?php echo $val->entry_date ?></td>
                     <td class="delete_date"><?php echo $val->delete_date ?></td>
+                    <td><a href="<?php echo base_url() . 'index.php/user/detail/' . $val->id ?>">詳細</a></td>
                 </tr>
                 <?php
             }

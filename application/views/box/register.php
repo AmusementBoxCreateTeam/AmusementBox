@@ -14,30 +14,9 @@
 	        <div class="panel-body">
 	            <table class="table table-bordered">
 	                <tr>
-	                    <th>経度</th>
-	                    <td>
-	                    	<input type="text" name="x" value="<?php echo set_value('x'); ?>" />
-	                    </td>
-	                </tr>
-	                <tr>
-	                    <th>緯度</th>
-	                    <td>
-	                    	<input type="text" name="y" value="<?php echo set_value('y'); ?>" />
-	                    </td>
-	                </tr>
-	                <tr>
-	                	<th>設置都道府県</th>
+	                	<th>設置住所</th>
 	                	<td>
-	                		<select name="prefectures">
-		                	<?php
-		                		foreach ($pref_list as $value) {
-		                			$selected = $value == set_value('prefectures') ? " selected" : "";
-		                	?>
-		                		<option <?php echo $selected; ?>><?php echo $value; ?></option>
-		                	<?php
-		                		}
-		                	?>
-	                		</select>
+	                		<input type="text" name="address" value="<?php echo set_value('address'); ?>" />
 	                	</td>
 	                </tr>
 	            </table>
