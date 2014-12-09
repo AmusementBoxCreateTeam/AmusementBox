@@ -122,5 +122,10 @@
             </table>
         </div>
     </div>
+        <div class="text-center" style="margin-bottom:10px;">
+        <button type="submit" onclick="location.href = '<?php echo base_url() ?>index.php/box/index'" class="btn btn-info btn-lg">
+            戻る
+        </button>
+    </div>
 </div>
 <?php $this->load->view('common/footer'); ?>

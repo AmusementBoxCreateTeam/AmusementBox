@@ -45,8 +45,8 @@
             <?php if (!empty($history)) { ?>
                 <?php foreach ($history as $val) { ?>
                     <tr>
-                        <td><a href="#"><?php echo $val->box_id ?></a></td>
-                        <td><a href="#"><?php echo $val->song_id ?></a></td>
+                        <td><?php echo $val->box_id ?>&nbsp;(<a href="<?php echo base_url() . 'index.php/box/detail?id=' . $val->box_id ?>">詳細</a>)</td>;
+                        <td><?php echo $val->song_id ?>&nbsp;(<a href="<?php echo base_url() . 'index.php/statistic/rank_detail/' . $val->song_id ?>">詳細</a>)</td>
                         <td><?php echo $val->song_title ?></td>
                         <td><?php echo $val->lyricist ?></td>
                         <td><?php echo $val->composer ?></td>
@@ -59,5 +59,10 @@
             ?>
         </tbody>       
     </table>
+    <div class="text-center" style="margin-bottom:10px;">
+        <button type="submit" onclick="location.href = '<?php echo base_url() ?>index.php/box/index'" class="btn btn-info btn-lg">
+            戻る
+        </button>
+    </div>
 </div>
 <?php echo $this->load->view('common/footer') ?>
