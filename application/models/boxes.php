@@ -21,7 +21,7 @@ class Boxes extends CI_Model {
         $this->db->select('X(point) as x');
         $this->db->select('Y(point) as y');
         $this->db->select('delete_date');
-        $this->db->select('prefectures');
+        $this->db->select('address');
         $this->db->from('boxes');
         $this->db->where('id', $id);
         
@@ -41,9 +41,10 @@ class Boxes extends CI_Model {
         $this->db->select('X(point) as x');
         $this->db->select('Y(point) as y');
         $this->db->select('delete_date');
-        $this->db->select('prefectures');
+        $this->db->select('address');
         $this->db->from('boxes');
         $this->db->where($this->create_where($search));
+        $this->db->like('address', $search['address'], 'after');
         
         $query = $this->db->get();
         
@@ -56,11 +57,6 @@ class Boxes extends CI_Model {
      */
     private function create_where($search) {
         $where = array();
-        if (!empty($search['pref'])) {
-            if ($search['pref'] != '指定しない') {
-                $where += array('prefectures =' => $search['pref']);
-            }
-        }
         if (!empty($search['entry_date_over'])) {
             $where += array('entry_date >=' => $search['entry_date_over']);
         }
@@ -78,9 +74,9 @@ class Boxes extends CI_Model {
     public function add($newBox) {
         $points = $this->getPointsFromAddress($newBox['address']);
 
-        $sql = "insert into boxes (point, prefectures, address) ";
-        $sql .= "values(geomFromText('point(". $points['x']. " ". $points['y']. ")'), ?, ?)";
-        $this->db->query($sql, array($newBox['prefectures'], $newBox['address']));
+        $sql = "insert into boxes (point, address) ";
+        $sql .= "values(geomFromText('point(". $points['x']. " ". $points['y']. ")'), ?)";
+        $this->db->query($sql, array($newBox['address']));
     }
 
 
@@ -94,7 +90,7 @@ class Boxes extends CI_Model {
             $url .= '&latlng='. $parameter['latlng'];
         }
         if (array_key_exists('address', $parameter)) {
-            $url .= '&address='. $parameter['address'];
+            $url .= '&address=日本,'. $parameter['address'];
         }
 
         // JSONの取得
@@ -107,9 +103,9 @@ class Boxes extends CI_Model {
         curl_close($cp);
 
         // JSONを配列へデコード
-        $obj = json_decode($json);
+        $googleMapsData = json_decode($json, true);
 
-        return $obj;
+        return $googleMapsData;
     }
 
 
@@ -118,13 +114,13 @@ class Boxes extends CI_Model {
      */
     private function getPointsFromAddress($address) {
         $parameter = array('address' => $address);
-        $obj = $this->getMaps($parameter);
+        $googleMapsData = $this->getMaps($parameter);
 
         $points = false;
-        if ($obj['status'] == 'OK') {
+        if ($googleMapsData['status'] == 'OK') {
             $points = array(
-                'x' => $obj['result']['geometry']['location']['lng'],
-                'y' => $obj['result']['geometry']['location']['lat']
+                'x' => $googleMapsData['results']['0']['geometry']['location']['lng'],
+                'y' => $googleMapsData['results']['0']['geometry']['location']['lat']
             );
         }
 

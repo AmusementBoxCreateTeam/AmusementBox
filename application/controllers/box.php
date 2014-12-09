@@ -18,15 +18,15 @@ class Box extends CI_Controller {
      */
     public function index() {
         if (empty($_GET)) {
-            $data['pref_selected'] = "";
+            $data['address'] = "";
             $data['entry_date_over'] = "";
             $data['entry_date_under'] = "";
         } else {
-            $data['pref_selected'] = $this->input->get('pref', true);
+            $data['address'] = $this->input->get('address', true);
             $data['entry_date_over'] = $this->input->get('entry_date_over', true);
             $data['entry_date_under'] = $this->input->get('entry_date_under', true);
         }
-        $search = array('pref' => $data['pref_selected'],
+        $search = array('address' => $data['address'],
             'entry_date_over' => $data['entry_date_over'],
             'entry_date_under' => $data['entry_date_under']);
         $data['list'] = $this->boxes->get_list($search);
@@ -61,19 +61,19 @@ class Box extends CI_Controller {
                 $this->boxes->add($this->input->post());
             }
         }
-        $url = 'http://maps.googleapis.com/maps/api/geocode/json?language=ja&latlng=35.681382,139.766084&sensor=true_or_false';
-        $json = "";
-        $cp = curl_init();
-        curl_setopt($cp, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($cp, CURLOPT_URL, $url);
-        curl_setopt($cp, CURLOPT_TIMEOUT, 60);
-        $json = curl_exec($cp);
-        curl_close($cp);
+        // $url = 'http://maps.googleapis.com/maps/api/geocode/json?language=ja&latlng=35.681382,139.766084&sensor=true_or_false';
+        // $json = "";
+        // $cp = curl_init();
+        // curl_setopt($cp, CURLOPT_RETURNTRANSFER, 1);
+        // curl_setopt($cp, CURLOPT_URL, $url);
+        // curl_setopt($cp, CURLOPT_TIMEOUT, 60);
+        // $json = curl_exec($cp);
+        // curl_close($cp);
 
-        $obj = json_decode($json);
-        echo '<pre>';
-        print_r($obj);
-        echo '</pre>';
+        // $obj = json_decode($json, true);
+        // echo '<pre>';
+        // print_r($obj);
+        // echo '</pre>';
 
 
         $data['pref_list'] = $this->get_pref_list();
