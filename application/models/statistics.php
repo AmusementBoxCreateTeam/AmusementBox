@@ -43,12 +43,14 @@ class Statistics extends CI_Model {
             $this->db->select('songs.song_time');
             $this->db->select('songs.genre');
             $this->db->select('songs.release_date');
+            $this->db->from('songs');
+        } else {
+            $this->db->select('count(songs.id) as used_num');
+            $this->db->from('historys');
+            $this->db->join('users', 'historys.user_id = users.id', 'left');
+            $this->db->join('songs', 'historys.song_id = songs.id', 'left');
+            $this->db->group_by('songs.id');
         }
-        $this->db->select('count(songs.id) as used_num');
-        $this->db->from('historys');
-        $this->db->join('users', 'historys.user_id = users.id', 'left');
-        $this->db->join('songs', 'historys.song_id = songs.id', 'left');
-        $this->db->group_by('songs.id');
 
         if ($gender !== '') {
             $this->db->where('users.gender', $gender);

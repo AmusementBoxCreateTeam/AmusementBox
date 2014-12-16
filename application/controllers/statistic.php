@@ -39,7 +39,11 @@ class Statistic extends CI_Controller {
             exit();
         }
         //音楽詳細
-        $data['detail'] = $this->statistics->rank_graph($id, '', '', '');
+        $is_music = $data['detail'] = $this->statistics->rank_graph($id, '', '', '');
+        if(empty($is_music)){
+            show_404();
+            exit();
+        }
         //女性
         $data['woman'] = $this->statistics->rank_graph($id, 0, '', '');
         //男性
