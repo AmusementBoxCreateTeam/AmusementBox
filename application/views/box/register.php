@@ -4,7 +4,7 @@
     <h2>端末登録</h2>
     <?php
     $attributes = array('class' => 'form-inline', 'role' => 'form');
-    echo form_open('box/register', $attributes);
+    echo form_open('box/conf', $attributes);
     ?>
 	    <?php echo validation_errors(); ?>
 	    <div class="panel panel-info">

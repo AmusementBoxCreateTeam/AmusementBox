@@ -34,7 +34,6 @@ class Box extends CI_Controller {
         $this->load->view('box/index.php', $data);
     }
 
-
     /**
      * 端末詳細ページ
      */
@@ -47,7 +46,23 @@ class Box extends CI_Controller {
         }
     }
 
-
+    /**
+     * 端末登録確認ページ
+     */
+    public function conf() {
+        if (empty($_POST)) {
+            show_404();
+            exit;
+        }
+        $this->set_validation_rules();
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->view('box/register');
+        } else {
+            $data['map'] = $this->boxes->add($this->input->post(), TRUE);
+            $data['address'] = $this->input->post('address');
+            $this->load->view('box/conf.php', $data);
+        }
+    }
 
     /**
      * 端末登録ページ
@@ -57,7 +72,7 @@ class Box extends CI_Controller {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $this->set_validation_rules();
             // テスト中につき必ずtrue
-            if ($this->form_validation->run() == true || true) {
+            if ($this->form_validation->run() === TRUE) {
                 $this->boxes->add($this->input->post());
             }
         }
@@ -69,7 +84,6 @@ class Box extends CI_Controller {
         // curl_setopt($cp, CURLOPT_TIMEOUT, 60);
         // $json = curl_exec($cp);
         // curl_close($cp);
-
         // $obj = json_decode($json, true);
         // echo '<pre>';
         // print_r($obj);
@@ -77,26 +91,23 @@ class Box extends CI_Controller {
 
 
         $data['pref_list'] = $this->get_pref_list();
-        $this->load->view('box/register.php', $data);
-
+        $this->load->view('box/comp.php', $data);
     }
-
 
     /**
      * 都道府県リストを返す
      */
     private function get_pref_list() {
-        return array ('指定しない',
+        return array('指定しない',
             '北海道',
-            '青森県','岩手県','宮城県','秋田県','山形県','福島県',
-            '茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県',
-            '山梨県','新潟県','富山県','石川県','福井県','長野県','岐阜県','静岡県','愛知県',
-            '三重県','滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県',
-            '鳥取県','島根県','岡山県','広島県','山口県',
-            '徳島県','香川県','愛媛県','高知県',
-            '福岡県','佐賀県','長崎県','熊本県','大分県','宮崎県','鹿児島県','沖縄県');
+            '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県',
+            '茨城県', '栃木県', '群馬県', '埼玉県', '千葉県', '東京都', '神奈川県',
+            '山梨県', '新潟県', '富山県', '石川県', '福井県', '長野県', '岐阜県', '静岡県', '愛知県',
+            '三重県', '滋賀県', '京都府', '大阪府', '兵庫県', '奈良県', '和歌山県',
+            '鳥取県', '島根県', '岡山県', '広島県', '山口県',
+            '徳島県', '香川県', '愛媛県', '高知県',
+            '福岡県', '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県');
     }
-
 
     /**
      * ページング用リンクを返す
@@ -117,28 +128,9 @@ class Box extends CI_Controller {
         return $this->pagination->create_links();
     }
 
-
     private function set_validation_rules() {
-        $config = array();
-        $config = array(
-            array(
-                'field' => 'pref',
-                'label' => '都道府県',
-                'rule' => 'trim'
-                ),
-            array(
-                'field' => 'entry_date_over',
-                'label' => '登録日',
-                'rule' => 'trim'
-                ),
-            array(
-                'field' => 'entry_date_under',
-                'label' => '登録日',
-                'rule' => 'trim'
-                )
-            );
-        $this->form_validation->set_rules($config);
-    } 
-
+        $this->form_validation->set_rules('address','都道府県','trim|required');
+        $this->form_validation->set_error_delimiters('<p class="error">※', '</p>');
+    }
 
 }

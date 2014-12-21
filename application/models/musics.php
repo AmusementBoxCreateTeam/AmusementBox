@@ -135,7 +135,6 @@ class Musics extends CI_Model {
             'composer' => $data['composer'],
             'singer' => $data['singer'],
             'genre' => $data['genre'],
-            'song_time' => $data['song_time'],
             'release_date' => $data['release_date']
         );
 

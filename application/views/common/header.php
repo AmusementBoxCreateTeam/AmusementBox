@@ -58,7 +58,7 @@ and open the template in the editor.
                         </li>
                         <!-- ドロップダウンのメニューも配置可能 -->
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">BOX<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">端末<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="<?php echo base_url() ?>index.php/box">一覧</a></li>
                                 <li><a href="<?php echo base_url() ?>index.php/box/register">登録</a></li>
@@ -72,6 +72,12 @@ and open the template in the editor.
                                 <li><a href="<?php echo base_url() ?>index.php/music/input">登録</a></li>
                                 <li><a href="<?php echo base_url() ?>index.php/statistic">ランキング</a></li>
                                 <!--<li class="divider"></li>!-->
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">アカウント<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<?php echo base_url() ?>index.php/account">アカウント情報変更</a></li>
                             </ul>
                         </li>
                     </ul>

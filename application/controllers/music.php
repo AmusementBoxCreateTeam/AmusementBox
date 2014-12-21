@@ -11,7 +11,7 @@ class Music extends CI_Controller {
         $this->config->load('base');
         $this->load->model(array('musics'));
         $this->load->library(array('pagination', 'form_validation'));
-        
+
         $this->logined->logincheck();
     }
 
@@ -96,6 +96,11 @@ class Music extends CI_Controller {
             show_404();
             exit();
         }
+        $this->set_validation_rules();
+        if ($this->form_validation->run() === false) {
+            show_404();
+            exit();
+        }
         if (!empty($id)) {
             //編集
             $this->musics->update_music($id, $this->input->post());
@@ -103,13 +108,8 @@ class Music extends CI_Controller {
             //登録
             $this->musics->insert_music($this->input->post());
         }
-        $this->set_validation_rules();
-        if ($this->form_validation->run() === false) {
-            show_404();
-            exit();
-        }
         //$this->comp();
-        redirect('music/comp');
+        redirect('music/comp/'.$id);
     }
 
     public function comp($id = '') {

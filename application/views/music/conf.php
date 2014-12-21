@@ -39,10 +39,6 @@
                     <td><?php echo set_value('genre'); ?></td>
                 </tr>
                 <tr>
-                    <th>曲の長さ&nbsp;<span class="btn-danger">必須</span></th>
-                    <td><?php echo set_value('song_time'); ?></td>
-                </tr>
-                <tr>
                     <th>リリース日&nbsp;<span class="btn-danger">必須</span></th>
                     <td>
                         <div class="input-group">

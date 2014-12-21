@@ -3,12 +3,12 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>html/js/gmaps.js"></script>
 <script type="text/javascript">
     var map;
-    $(document).ready(function(){
+    $(document).ready(function() {
         map = new GMaps({
             div: '#map_canvas',
             lat: $("#y").text(),
             lng: $("#x").text(),
-            zoom:16
+            zoom: 16
         });
         map.addMarker({
             lat: $("#y").text(),
@@ -19,13 +19,17 @@
 
 </script>
 <style>
-#map_canvas {
-    width: 100%;
-    height:500px;
-}
+    #map_canvas {
+        width: 100%;
+        height:500px;
+    }
 </style>
 <div class="container-fluid">
-    <h2>端末詳細</h2>
+    <ul class="breadcrumb">
+        <li>端末登録<span class="divider"></span></li>
+        <li class="active">端末登録確認</li>
+    </ul>
+    <h2>端末登録確認</h2>
     <?php echo validation_errors(); ?>
     <div class="panel panel-info">
         <div class="panel-heading">
@@ -34,28 +38,16 @@
         <div class="panel-body">
             <table class="table table-bordered">
                 <tr>
-                    <th>ID</th>
-                    <td id='box_id'><?php echo $box->id; ?></td>
-                </tr>
-                <tr>
-                    <th>端末登録日</th>
-                    <td><?php echo $box->entry_date; ?></td>
-                </tr>
-                <tr>
-                    <th>端末破棄日</th>
-                    <td><?php echo $box->delete_date; ?></td>
-                </tr>
-                <tr>
                     <th>経度</th>
-                    <td id="x"><?php echo $box->x; ?></td>
+                    <td id="x"><?php echo $map['x']; ?></td>
                 </tr>
                 <tr>
                     <th>緯度</th>
-                    <td id="y"><?php echo $box->y; ?></td>
+                    <td id="y"><?php echo $map['y']; ?></td>
                 </tr>
                 <tr>
                     <th>設置住所</th>
-                    <td><?php echo $box->address; ?></td>
+                    <td><?php echo $address; ?></td>
                 </tr>
                 <tr>
                     <th>マップ</th>
@@ -63,11 +55,14 @@
                 </tr>
             </table>
         </div>
-    <div class="text-center" style="margin-bottom:10px;">
-        <button type="button" onclick="location.href = '<?php echo base_url() ?>index.php/box/index'" class="btn btn-info btn-lg">
-            戻る
-        </button>
-    </div>
+        <?php
+        $url = 'box/register/';
+        echo form_open($url);
+        ?>
+        <?php
+        echo form_hidden('address', $address);
+        ?>
+        <div class="text-center" style="margin-bottom:10px;"><button type="submit" class="btn btn-success btn-lg">登録</button></div>
     </div>
 </div>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>

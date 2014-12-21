@@ -5,16 +5,14 @@ if (!defined('BASEPATH'))
 
 class Boxes extends CI_Model {
 
-
     public function __construct() {
         parent::__construct();
         $this->load->database();
     }
 
-
-     /**
-      * 受け取ったIDの端末情報を返す
-      */
+    /**
+     * 受け取ったIDの端末情報を返す
+     */
     public function get_box($id) {
         $this->db->select('id');
         $this->db->select('entry_date');
@@ -24,18 +22,16 @@ class Boxes extends CI_Model {
         $this->db->select('address');
         $this->db->from('boxes');
         $this->db->where('id', $id);
-        
+
         $query = $this->db->get();
-        
+
         return $query->row();
     }
-
-    
 
     /**
      * 端末一覧を返す
      */
-    function get_list($search = '', $offset = ''){
+    function get_list($search = '', $offset = '') {
         $this->db->select('id');
         $this->db->select('entry_date');
         $this->db->select('X(point) as x');
@@ -45,12 +41,11 @@ class Boxes extends CI_Model {
         $this->db->from('boxes');
         $this->db->where($this->create_where($search));
         $this->db->like('address', $search['address'], 'after');
-        
+
         $query = $this->db->get();
-        
+
         return $query->result();
     }
-
 
     /**
      * 受け取った配列からwhere句を作成し、返す
@@ -67,18 +62,20 @@ class Boxes extends CI_Model {
         return $where;
     }
 
-
     /**
      *
      */
-    public function add($newBox) {
+    public function add($newBox, $conf = FALSE) {
         $points = $this->getPointsFromAddress($newBox['address']);
 
-        $sql = "insert into boxes (point, address) ";
-        $sql .= "values(geomFromText('point(". $points['x']. " ". $points['y']. ")'), ?)";
-        $this->db->query($sql, array($newBox['address']));
+        if ($conf === FALSE) {
+            $sql = "insert into boxes (point, address) ";
+            $sql .= "values(geomFromText('point(" . $points['x'] . " " . $points['y'] . ")'), ?)";
+            $this->db->query($sql, array($newBox['address']));
+        }else{
+            return $points; 
+        }
     }
-
 
     /**
      * Google Maps APIからJSONオブジェクトを取得する
@@ -87,10 +84,10 @@ class Boxes extends CI_Model {
         // APIリクエストURLの作成
         $url = 'http://maps.googleapis.com/maps/api/geocode/json?language=ja&sensor=true_or_false';
         if (array_key_exists('latlng', $parameter)) {
-            $url .= '&latlng='. $parameter['latlng'];
+            $url .= '&latlng=' . $parameter['latlng'];
         }
         if (array_key_exists('address', $parameter)) {
-            $url .= '&address=日本,'. $parameter['address'];
+            $url .= '&address=日本,' . $parameter['address'];
         }
 
         // JSONの取得
@@ -107,7 +104,6 @@ class Boxes extends CI_Model {
 
         return $googleMapsData;
     }
-
 
     /**
      * 住所から緯度経度を取得する
@@ -126,6 +122,5 @@ class Boxes extends CI_Model {
 
         return $points;
     }
-
 
 }
