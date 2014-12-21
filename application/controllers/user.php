@@ -7,7 +7,7 @@ class User extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->output->enable_profiler(TRUE);
+        #$this->output->enable_profiler(TRUE);
         $this->config->load('base');
         $this->load->model(array('users'));
         $this->load->library(array('pagination', 'conversion_age_birthday'));

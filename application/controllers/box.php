@@ -7,7 +7,7 @@ class Box extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->output->enable_profiler(TRUE);
+        #$this->output->enable_profiler(TRUE);
         $this->config->load('box');
         $this->load->model(array('boxes'));
         $this->logined->logincheck();
