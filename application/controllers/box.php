@@ -46,6 +46,9 @@ class Box extends CI_Controller {
         }
     }
 
+    public function input(){
+        $this->load->view('box/register');
+    }
     /**
      * 端末登録確認ページ
      */
@@ -67,7 +70,7 @@ class Box extends CI_Controller {
     /**
      * 端末登録ページ
      */
-    public function register() {
+    public function comp() {
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $this->set_validation_rules();

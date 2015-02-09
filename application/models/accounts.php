@@ -27,9 +27,9 @@ class Accounts extends CI_Model {
                 'email' => $data['mail']
             );
         }
-        if (!empty($data['check_psas'])) {
+        if (!empty($data['check_pass'])) {
             $set_data += array(
-                'pass' => $data['pass']
+                'password' => $data['pass']
             );
         }
 

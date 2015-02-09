@@ -51,34 +51,27 @@ and open the template in the editor.
 
                         <!-- 通常のリンク -->
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">ユーザ<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">作品概要<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo base_url() ?>index.php/user">一覧</a></li>
-                            </ul>
-                        </li>
-                        <!-- ドロップダウンのメニューも配置可能 -->
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">端末<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="<?php echo base_url() ?>index.php/box">一覧</a></li>
-                                <li><a href="<?php echo base_url() ?>index.php/box/input">登録</a></li>
+                                <li><a href="<?php echo base_url() ?>index.php/archive/plan">企画概要・作品内容</a></li>
+                                <li><a href="<?php echo base_url() ?>index.php/archive/skill">使用技術</a></li>
                                 <!--<li class="divider"></li>!-->
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">音楽<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">企画書<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo base_url() ?>index.php/music">一覧</a></li>
-                                <li><a href="<?php echo base_url() ?>index.php/music/input">登録</a></li>
-                                <li><a href="<?php echo base_url() ?>index.php/statistic">ランキング</a></li>
+                                <li><a href="<?php echo base_url() ?>html/archive/onesheet.pdf">ワンシート企画書</a></li>
+                                <li><a href="<?php echo base_url() ?>html/archive/program.pdf">プログラムイラスト</a></li>
+                                <li><a href="<?php echo base_url() ?>index.php/archive/booth">ブースイメージ図</a></li>
                                 <!--<li class="divider"></li>!-->
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">アカウント<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="<?php echo base_url() ?>index.php/account">アカウント情報変更</a></li>
-                            </ul>
+                            <a href="<?php echo base_url() . 'index.php/archive/account' ?>">会計報告書</b></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="<?php echo base_url() . 'index.php/archive/impressions' ?>">感想</b></a>
                         </li>
                     </ul>
                     <ul class="nav navbar-brand pull-right">

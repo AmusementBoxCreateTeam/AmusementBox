@@ -56,13 +56,13 @@
             </table>
         </div>
         <?php
-        $url = 'box/register/';
+        $url = 'box/comp/';
         echo form_open($url);
         ?>
         <?php
         echo form_hidden('address', $address);
         ?>
-        <div class="text-center" style="margin-bottom:10px;"><button type="submit" class="btn btn-success btn-lg">登録</button></div>
+        <div class="text-center" style="margin-bottom:10px;"><button type="button" onclick="history.back()" class="btn btn-info btn-lg" style="margin: 30px;">戻る</button><button type="submit" class="btn btn-success btn-lg">登録</button></div>
     </div>
 </div>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>

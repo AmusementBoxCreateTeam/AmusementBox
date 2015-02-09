@@ -53,9 +53,9 @@
             echo form_hidden($key, $val);
         }
         ?>
-        <div class="text-center" style="margin-bottom:10px;"><button type="submit" class="btn btn-success btn-lg">登録</button></div>
+        <div class="text-center" style="margin-bottom:10px;"><button type="button" onclick="history.back()" class="btn btn-info btn-lg" style="margin: 30px;">戻る</button><button type="submit" class="btn btn-success btn-lg">登録</button></div>
         </form>
-    </div>
+    </div>  
 </div>
 <?php
 $this->load->view('common/footer');

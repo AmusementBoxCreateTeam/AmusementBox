@@ -38,15 +38,19 @@ class Index extends CI_Controller {
         $this->_validation_login();
         if ($this->form_validation->run() !== false) {
             $result = $this->logins->get_login($this->input->post());
-            if ($result !== 0) {
+            if (!empty($result)) {
                 $session_data = array(
                     'login_id' => $result->login_id
                 );
+                $session_data += array(
+                    'is_try' => TRUE
+                );
+                $this->session->set_userdata($session_data);
+            }else{
+                $this->session->sess_destroy();
             }
-            $session_data += array(
-                'is_try' => TRUE
-            );
-            $this->session->set_userdata($session_data);
+            redirect('index');
+        }else{
             redirect('index');
         }
     }
